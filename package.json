@@ -1,0 +1,28 @@
+{
+  "name": "repo-lister",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "preexport": "npm run build",
+    "export": "next export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaggle/repo-lister.git"
+  },
+  "author": "Jon Lauridsen <mail@jonlauridsen.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaggle/repo-lister/issues"
+  },
+  "homepage": "https://github.com/gaggle/repo-lister#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "next": "^4.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
