@@ -4,7 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "next",
+    "predev": "npm run build",
+    "dev": "node server",
     "build": "next build",
     "preexport": "npm run build",
     "export": "next export",
