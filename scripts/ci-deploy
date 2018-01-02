@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+  echo 'Deploying...' && echo -en 'travis_fold:start:deploy\\r'
+  git config user.name "Jon Lauridsen"
+  git config user.email "mail@jonlauridsen.com"
+  npm run deploy
+  echo -en 'travis_fold:end:deploy\\r'
+else
+  echo "Skipping deploy"
+fi
