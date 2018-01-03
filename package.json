@@ -8,7 +8,7 @@
     "deploy": "./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
     "dev": "node server",
-    "export": "next export",
+    "export": "next export && touch out/.nojekyll && echo list.jonlauridsen.com > out/CNAME",
     "lint": "standard",
     "predeploy": "npm run export",
     "predev": "npm run build",
