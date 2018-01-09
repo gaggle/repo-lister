@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "next build",
+    "build-storybook": "build-storybook",
     "deploy": "./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
     "dev": "node server",
@@ -13,7 +14,8 @@
     "predeploy": "npm run export",
     "predev": "npm run build",
     "preexport": "npm run build",
-    "test":"echo testing..."
+    "storybook": "start-storybook -p 6006",
+    "test": "echo testing..."
   },
   "repository": {
     "type": "git",
@@ -27,8 +29,13 @@
   "homepage": "https://github.com/gaggle/repo-lister#readme",
   "dependencies": {},
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.6",
+    "@storybook/addon-links": "^3.3.6",
+    "@storybook/cli": "^3.3.6",
+    "@storybook/react": "^3.3.6",
     "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
+    "lorem-ipsum": "^1.0.4",
     "next": "^4.2.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
