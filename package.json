@@ -27,7 +27,6 @@
     "url": "https://github.com/gaggle/repo-lister/issues"
   },
   "homepage": "https://github.com/gaggle/repo-lister#readme",
-  "dependencies": {},
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.6",
     "@storybook/addon-links": "^3.3.6",
