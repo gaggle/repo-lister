@@ -32,13 +32,18 @@
     "@storybook/addon-links": "^3.3.6",
     "@storybook/cli": "^3.3.6",
     "@storybook/react": "^3.3.6",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
+    "jest": "^22.0.5",
     "lorem-ipsum": "^1.0.4",
     "next": "^4.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "standard": "^10.0.3"
   }
 }
