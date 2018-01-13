@@ -7,6 +7,7 @@ import { linkTo } from '@storybook/addon-links'
 import { storiesOf } from '@storybook/react'
 
 import Post from '../components/Post'
+import Clicker from '../components/Clicker'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome
   showApp={linkTo('Button')}/>)
@@ -25,4 +26,9 @@ storiesOf('Post', module)
       <Post id='1' title={lorem({count: 1})} body={lorem({count: 10})} key='1'/>
       <Post id='2' title={lorem({count: 1})} body={lorem({count: 10})} key='2'/>
     </section>
+  ))
+
+storiesOf('Clicker', module)
+  .add('simple', () => (
+    <Clicker data='foo'/>
   ))

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Component } from 'react'
 
+import Clicker from '../components/Clicker'
 import data from '../data.json'
 
 export default class extends Component {
@@ -24,6 +25,11 @@ export default class extends Component {
         <h1>{this.props.title}</h1>
 
         <p>{this.props.body}</p>
+
+        <div className="mt-5">
+          <Clicker/>
+        </div>
+
         <Link href={'/'}>
           <a>Go back home</a>
         </Link>
