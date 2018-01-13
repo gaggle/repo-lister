@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Component } from 'react'
 
 import data from '../data.json'
-import Post from '../components/post'
+import Post from '../components/Post'
 
 export default class extends Component {
   static async getInitialProps () {
