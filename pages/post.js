@@ -6,7 +6,11 @@ import data from '../data.json'
 
 export default class extends Component {
   static async getInitialProps ({query}) {
-    const post = {id: 1, title: `title for ${query.id}`, body: data[query.id - 1].body}
+    const post = {
+      id: 1,
+      title: `title for ${query.id}`,
+      body: data[query.id - 1].body
+    }
     return {...post}
   }
 
