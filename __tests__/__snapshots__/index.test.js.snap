@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`With Snapshot Testing App matches snapshot 1`] = `
+<main>
+  <h1>
+    List of posts
+  </h1>
+  <section>
+    <article>
+      <h2 />
+      <p />
+      <a
+        href="/post/2"
+        onClick={[Function]}
+      >
+        Read more...
+      </a>
+    </article>
+  </section>
+</main>
+`;
