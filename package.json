@@ -15,7 +15,7 @@
     "prestart": "npm run build",
     "start": "node server",
     "storybook": "start-storybook -p 6006",
-    "test": "echo testing..."
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -45,5 +45,11 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "standard": "^10.0.3"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/shim.js",
+      "<rootDir>/setupTests.js"
+    ]
   }
 }
