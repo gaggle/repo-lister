@@ -2,20 +2,42 @@
 
 exports[`With Snapshot Testing App matches snapshot 1`] = `
 <main>
-  <h1>
-    List of posts
-  </h1>
-  <section>
-    <article>
-      <h2 />
-      <p />
-      <a
-        href="/post/2"
-        onClick={[Function]}
-      >
-        Read more...
-      </a>
-    </article>
-  </section>
+  <div>
+    <header>
+      <nav>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+         | 
+        <a
+          href="/about"
+          onClick={[Function]}
+        >
+          About
+        </a>
+      </nav>
+    </header>
+    <h1>
+      List of posts
+    </h1>
+    <section>
+      <article>
+        <h2 />
+        <p />
+        <a
+          href="/post/2"
+          onClick={[Function]}
+        >
+          Read more...
+        </a>
+      </article>
+    </section>
+    <footer>
+      I'm here to stay
+    </footer>
+  </div>
 </main>
 `;
