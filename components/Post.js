@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default props =>
-  <article>
+function Post (props) {
+  return <article>
     <h2>{props.title}</h2>
     <p>{props.body}</p>
     {/* render the URL as /post/:id */}
@@ -11,3 +11,6 @@ export default props =>
       <a>Read more...</a>
     </Link>
   </article>
+}
+
+export default Post
