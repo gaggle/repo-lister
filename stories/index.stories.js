@@ -9,8 +9,8 @@ import { storiesOf } from '@storybook/react'
 import Post from '../components/Post'
 import Clicker from '../components/Clicker'
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome
-  showApp={linkTo('Button')}/>)
+storiesOf('Welcome', module)
+  .add('to Storybook', () => <Welcome showApp={linkTo('Button')}/>)
 
 storiesOf('Button', module)
   .add('with text', () => <Button onClick={action('clicked')}>
@@ -18,9 +18,10 @@ storiesOf('Button', module)
   </Button>)
 
 storiesOf('Post', module)
-  .add('simple', () => (
-    <Post id='1' title={lorem({count: 1})} body={lorem({count: 10})} key='1'/>
-  ))
+  .add('simple', () => <Post id='1'
+                             title={lorem({count: 1})}
+                             body={lorem({count: 10})}
+                             key='1'/>)
   .add('list', () => (
     <section>
       <Post id='1' title={lorem({count: 1})} body={lorem({count: 10})} key='1'/>
@@ -29,6 +30,4 @@ storiesOf('Post', module)
   ))
 
 storiesOf('Clicker', module)
-  .add('simple', () => (
-    <Clicker data='foo'/>
-  ))
+  .add('simple', () => <Clicker data='foo'/>)
