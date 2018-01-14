@@ -51,6 +51,20 @@
     "setupFiles": [
       "<rootDir>/shim.js",
       "<rootDir>/setupTests.js"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/coverage/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/out/",
+      "<rootDir>/stories/"
     ]
   }
 }
