@@ -37,11 +37,11 @@ exports[`With Snapshot Testing App matches snapshot 1`] = `
     </section>
     <footer>
       <time
-        data-dateepoch={198784740}
-        data-datetime="1976-04-19T18:59:00.000+01:00"
-        title="April 19th 1976, 18:59:00"
+        data-dateepoch={320367600000}
+        data-datetime="1980-02-25T23:00:00.000+00:00"
+        title="February 25th 1980, 23:00:00"
       >
-        over 41 years ago
+        almost 20 years ago
       </time>
       I'm here to stay
     </footer>
