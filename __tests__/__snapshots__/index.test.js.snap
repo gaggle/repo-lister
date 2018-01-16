@@ -36,6 +36,13 @@ exports[`With Snapshot Testing App matches snapshot 1`] = `
       </article>
     </section>
     <footer>
+      <time
+        data-dateepoch={320367600000}
+        data-datetime="1980-02-25T23:00:00.000+00:00"
+        title="February 25th 1980, 23:00:00"
+      >
+        almost 20 years ago
+      </time>
       I'm here to stay
     </footer>
   </div>

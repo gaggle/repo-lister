@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
 
+import Timestamp from './Timestamp'
+
 export default ({children, title = 'This is the default title'}) => (
   <div>
     <Head>
@@ -18,6 +20,7 @@ export default ({children, title = 'This is the default title'}) => (
     {children}
 
     <footer>
+      <Timestamp>1980-02-26T00:00:00+01:00</Timestamp>
       {'I\'m here to stay'}
     </footer>
   </div>
