@@ -1,28 +1,20 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { distanceInWords, format } from 'date-fns'
 
 import { getDatetime } from '../lib/dates'
 
-class Moment extends Component {
+export default class Timestamp extends Component {
   static pooledElements = []
   static pooledTimer = null
-
-  static propTypes = {
-    interval: PropTypes.number
-  }
+  static pooledInterval = 1000
 
   static defaultProps = {
     filter: (d) => { return d },
-    interval: 1000,
     onChange: () => {}
   }
 
   constructor (props) {
     super(props)
-    if (!Moment.pooledTimer) {
-      startPooledTimer(props.interval)
-    }
 
     if (props.date && props.children) {
       throw new Error('Cannot specify both date and children')
@@ -37,20 +29,17 @@ class Moment extends Component {
     this.update()
   }
 
-  componentDidMount () {
-    pushPooledElement(this)
-  }
-
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps () {
     this.update()
   }
 
   componentWillUnmount () {
-    this.clearTimer()
+    removePooledElement(this)
   }
 
-  clearTimer () {
-    removePooledElement(this)
+  componentDidMount () {
+    ensurePooledTimer(this.pooledInterval)
+    pushPooledElement(this)
   }
 
   /**
@@ -79,40 +68,39 @@ class Moment extends Component {
   }
 }
 
-function startPooledTimer (interval) {
-  clearPooledTimer()
-  Moment.pooledTimer = setInterval(() => {
-    Moment.pooledElements.forEach(element => {
+function ensurePooledTimer (interval) {
+  if (Timestamp.pooledTimer) return
+
+  Timestamp.pooledTimer = setInterval(() => {
+    Timestamp.pooledElements.forEach(element => {
       element.update()
     })
   }, interval)
 }
 
-function clearPooledTimer () {
-  if (Moment.pooledTimer) {
-    clearInterval(Moment.pooledTimer)
-    Moment.pooledTimer = null
-    Moment.pooledElements = []
-  }
+export function clearPooledTimer () {
+  if (!Timestamp.pooledTimer) return
+
+  clearInterval(Timestamp.pooledTimer)
+  Timestamp.pooledTimer = null
+  Timestamp.pooledElements = []
 }
 
 function pushPooledElement (element) {
-  if (!(element instanceof Moment)) {
-    throw new Error('Element not an instance of Moment')
+  if (!(element instanceof Timestamp)) {
+    throw new Error('Element not an instance of Timestamp')
   }
-  if (Moment.pooledElements.indexOf(element) === -1) {
-    Moment.pooledElements.push(element)
+  if (Timestamp.pooledElements.indexOf(element) === -1) {
+    Timestamp.pooledElements.push(element)
   }
 }
 
 function removePooledElement (element) {
-  if (!(element instanceof Moment)) {
-    throw new Error('Element not an instance of Moment')
+  if (!(element instanceof Timestamp)) {
+    throw new Error('Element not an instance of Timestamp')
   }
-  const index = Moment.pooledElements.indexOf(element)
+  const index = Timestamp.pooledElements.indexOf(element)
   if (index !== -1) {
-    Moment.pooledElements.splice(index, 1)
+    Timestamp.pooledElements.splice(index, 1)
   }
 }
-
-export default Moment
