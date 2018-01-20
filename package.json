@@ -16,7 +16,7 @@
     "prestart": "npm run build",
     "start": "node server",
     "storybook": "start-storybook -p 6006",
-    "test": "jest"
+    "test": "jest && npm run export"
   },
   "repository": {
     "type": "git",
