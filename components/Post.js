@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-function Post (props) {
+export default function (props) {
   return <article>
     <h2>{props.title}</h2>
     <p>{props.body}</p>
@@ -12,5 +12,3 @@ function Post (props) {
     </Link>
   </article>
 }
-
-export default Post
