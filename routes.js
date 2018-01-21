@@ -19,7 +19,6 @@ function routes () {
   // combine the map of post pages with home
   return Object.assign({}, pages, {
     '/': {page: '/'},
-    '/about': {page: '/about'}
   })
 }
 
