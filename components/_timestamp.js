@@ -59,7 +59,8 @@ export default class Timestamp extends Component {
 
   render () {
     return (
-      <time title={format(this.state.start, 'MMMM Do YYYY, HH:mm:ss')}
+      <time className={this.props.className}
+            title={format(this.state.start, 'MMMM Do YYYY, HH:mm:ss')}
             data-datetime={format(this.state.start)}
             data-dateepoch={this.state.start.getTime()}>
         {this.state.content}
