@@ -4,10 +4,10 @@ const {parse} = require('url')
 
 const getRoutes = require('./routes')
 
-const isDev = process.env.NODE_ENV !== 'production'
+const ISDEV = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
 
-const app = next({dir: '.', isDev})
+const app = next({dir: '.', dev: ISDEV})
 const handle = app.getRequestHandler()
 const routes = getRoutes()
 
