@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { Component } from 'react'
 
-import Clicker from '../components/Clicker'
+import Clicker from '../components/clicker'
 import data from '../data.json'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 
 export default class extends Component {
   static async getInitialProps ({query}) {

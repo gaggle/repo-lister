@@ -14,6 +14,9 @@ const routes = getRoutes()
 app.prepare()
   .then(() => {
     const server = express()
+
+    server.use('/fonts/ionicons', express.static('./node_modules/ionicons/dist/fonts'))
+
     server.get('*', (req, res) => {
       const parsedUrl = parse(req.url, true)
       const {pathname, query = {}} = parsedUrl
