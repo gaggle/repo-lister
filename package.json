@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "build-storybook": "build-storybook",
-    "clean": "rm -rf .next/ coverage/ out/",
+    "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
     "deploy": "./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
     "export": "next export && touch out/.nojekyll && echo list.jonlauridsen.com > out/CNAME",
