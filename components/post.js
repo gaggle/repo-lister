@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 
-function Post (props) {
+export default function (props) {
   return <article>
-    <h2>{props.title}</h2>
+    <h3 className="mt-5">{props.title}</h3>
     <p>{props.body}</p>
     {/* render the URL as /post/:id */}
     <Link href={{pathname: '/post', query: {id: props.id}}}
@@ -12,5 +12,3 @@ function Post (props) {
     </Link>
   </article>
 }
-
-export default Post

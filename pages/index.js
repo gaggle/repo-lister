@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
+import lorem from 'lorem-ipsum'
 
 import data from '../data.json'
-import Layout from '../components/Layout'
-import Post from '../components/Post'
+import Layout from '../components/layout'
+import Post from '../components/post'
 
 export default class extends Component {
   static async getInitialProps () {
-    return {posts: data}
+    return {
+      buildDate: new Date(),
+      content: lorem({count: 10}),
+      posts: data
+    }
   }
 
   render () {
     return (
-      <main>
-        <Layout>
-          <h1>List of posts</h1>
+      <Layout {...this.props}>
+        <Container>
+          <h2 className="text-center display-4 mt-5 mb-2">Headline</h2>
+          <div>{this.props.content}</div>
+          <h2 className="text-center display-4 mt-5 mb-2">List of posts</h2>
           <section>
             {this.props.posts.map(post => <Post {...post} key={post.id}/>)}
           </section>
-        </Layout>
-      </main>
+        </Container>
+      </Layout>
     )
   }
 }

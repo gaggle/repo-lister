@@ -6,17 +6,18 @@
   "scripts": {
     "build": "next build",
     "build-storybook": "build-storybook",
-    "clean": "rm -rf .next/ coverage/ out/",
+    "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
     "deploy": "./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
     "export": "next export && touch out/.nojekyll && echo list.jonlauridsen.com > out/CNAME",
     "lint": "standard",
+    "posttest": "npm run export",
     "predeploy": "npm run export",
     "preexport": "npm run build",
     "prestart": "npm run build",
     "start": "node server",
     "storybook": "start-storybook -p 6006",
-    "test": "jest && npm run export"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,24 +29,35 @@
     "url": "https://github.com/gaggle/repo-lister/issues"
   },
   "homepage": "https://github.com/gaggle/repo-lister#readme",
-  "devDependencies": {
+  "dependencies": {
     "@storybook/addon-actions": "^3.3.6",
     "@storybook/addon-links": "^3.3.6",
     "@storybook/cli": "^3.3.6",
     "@storybook/react": "^3.3.6",
+    "babel-core": "^6.26.0",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "bootstrap": "^4.0.0",
     "date-fns": "^1.29.0",
+    "ionicons": "^3.0.0",
+    "isomorphic-unfetch": "^2.0.0",
+    "jquery": "^3.3.1",
+    "lorem-ipsum": "^1.0.4",
+    "next": "^4.2.1",
+    "node-sass": "^4.7.2",
+    "prop-types": "^15.6.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.2.0",
+    "react-bootstrap-table": "^4.3.1",
+    "react-dom": "^16.2.0",
+    "reactstrap": "^5.0.0-alpha.4",
+    "sass-loader": "^6.0.6"
+  },
+  "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
-    "isomorphic-unfetch": "^2.0.0",
     "jest": "^22.0.5",
-    "lorem-ipsum": "^1.0.4",
     "mockdate": "^2.0.2",
-    "next": "^4.2.1",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "standard": "^10.0.3"
   },
@@ -67,6 +79,9 @@
       "<rootDir>/node_modules/",
       "<rootDir>/out/",
       "<rootDir>/stories/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
