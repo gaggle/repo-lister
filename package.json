@@ -11,12 +11,13 @@
     "deploy:ci": "./scripts/ci-deploy",
     "export": "next export && touch out/.nojekyll && echo list.jonlauridsen.com > out/CNAME",
     "lint": "standard",
+    "posttest": "npm run export",
     "predeploy": "npm run export",
     "preexport": "npm run build",
     "prestart": "npm run build",
     "start": "node server",
     "storybook": "start-storybook -p 6006",
-    "test": "jest && npm run export"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -78,6 +79,9 @@
       "<rootDir>/node_modules/",
       "<rootDir>/out/",
       "<rootDir>/stories/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

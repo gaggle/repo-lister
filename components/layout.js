@@ -28,7 +28,7 @@ export default class extends Component {
         </Head>
 
         <Navbar light className="navbar navbar-expand-md pt-3 pb-3">
-          <Link prefetch href="/">
+          <Link href="/">
             <NavbarBrand href="/">
               <span className="icon ion-md-home mr-1"/>Home
             </NavbarBrand>

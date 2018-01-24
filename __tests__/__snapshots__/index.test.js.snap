@@ -1,50 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`With Snapshot Testing App matches snapshot 1`] = `
-<main>
-  <div>
-    <header>
-      <nav>
-        <a
-          href="/"
-          onClick={[Function]}
-        >
-          Home
-        </a>
-         | 
-        <a
-          href="/about"
-          onClick={[Function]}
-        >
-          About
-        </a>
-      </nav>
-    </header>
-    <h1>
+Array [
+  <nav
+    className="navbar navbar-expand-md pt-3 pb-3 navbar navbar-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="icon ion-md-home mr-1"
+      />
+      Home
+    </a>
+  </nav>,
+  <div
+    className="container"
+  >
+    <h2
+      className="text-center display-4 mt-5 mb-2"
+    >
+      Headline
+    </h2>
+    <div />
+    <h2
+      className="text-center display-4 mt-5 mb-2"
+    >
       List of posts
-    </h1>
+    </h2>
     <section>
       <article>
-        <h2 />
+        <h3
+          className="mt-5"
+        />
         <p />
         <a
-          href="/post/2"
+          href="/post/1"
           onClick={[Function]}
         >
           Read more...
         </a>
       </article>
     </section>
-    <footer>
-      <time
-        data-dateepoch={320367600000}
-        data-datetime="1980-02-25T23:00:00.000+00:00"
-        title="February 25th 1980, 23:00:00"
+  </div>,
+  <footer>
+    <div
+      className="col-md-offset-3 text-center container"
+    >
+      <hr
+        className="mt-3"
+      />
+      <p
+        className="text-muted small"
       >
-        almost 20 years ago
-      </time>
-      I'm here to stay
-    </footer>
-  </div>
-</main>
+        <span>
+           Updated 
+        </span>
+        <time
+          className="font-weight-bold"
+          data-dateepoch={946684800000}
+          data-datetime="2000-01-01T00:00:00.000+00:00"
+          title="January 1st 2000, 00:00:00"
+        >
+          less than 5 seconds ago
+        </time>
+        <span>
+          , built with 
+        </span>
+        <a
+          className="text-muted font-weight-bold"
+          href="https://github.com/zeit/next.js"
+          onClick={[Function]}
+        >
+          Next.js
+        </a>
+        .
+      </p>
+    </div>
+  </footer>,
+]
 `;
