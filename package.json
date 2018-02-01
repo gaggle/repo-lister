@@ -2,7 +2,6 @@
   "name": "repo-lister",
   "version": "0.0.0",
   "description": "",
-  "main": "lib/index.js",
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
