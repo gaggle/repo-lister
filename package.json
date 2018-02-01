@@ -9,7 +9,7 @@
     "deploy:ci": "./scripts/ci-deploy",
     "export": "npm run build && ./scripts/export",
     "lint": "standard",
-    "start": "npm run build && node server",
+    "start": "npm run build && ./scripts/serve",
     "stories": "start-storybook -p 6006",
     "test": "jest",
     "posttest": "npm run export"

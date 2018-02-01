@@ -1,8 +1,9 @@
+#!/usr/bin/env node
 const express = require('express')
 const next = require('next')
 const {parse} = require('url')
 
-const getRoutes = require('./routes')
+const getRoutes = require('../lib/routes')
 
 const ISDEV = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
