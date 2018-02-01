@@ -42,7 +42,6 @@
     "ionicons": "^3.0.0",
     "isomorphic-unfetch": "^2.0.0",
     "jquery": "^3.3.1",
-    "lorem-ipsum": "^1.0.4",
     "next": "^4.2.1",
     "node-sass": "^4.7.2",
     "prop-types": "^15.6.0",
@@ -58,6 +57,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
     "jest": "^22.0.5",
+    "lorem-ipsum": "^1.0.4",
     "mockdate": "^2.0.2",
     "react-test-renderer": "^16.2.0",
     "standard": "^10.0.3"
