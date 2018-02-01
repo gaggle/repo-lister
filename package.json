@@ -28,10 +28,8 @@
   "dependencies": {
     "@storybook/addon-actions": "^3.3.6",
     "@storybook/addon-links": "^3.3.6",
-    "@storybook/cli": "^3.3.6",
     "@storybook/react": "^3.3.6",
     "babel-core": "^6.26.0",
-    "babel-plugin-wrap-in-js": "^1.1.1",
     "bootstrap": "^4.0.0",
     "date-fns": "^1.29.0",
     "ionicons": "^3.0.0",
