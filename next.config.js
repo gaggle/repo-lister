@@ -1,6 +1,5 @@
 'use strict'
 const getRoutes = require('./lib/routes')
-const webpack = require('webpack')
 
 module.exports = {
   exportPathMap: getRoutes,
