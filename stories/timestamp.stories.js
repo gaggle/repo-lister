@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import Timestamp from '../components/Timestamp'
+import Timestamp from '../components/timestamp'
 
 storiesOf('Timestamp', module)
   .add('single', () => (
