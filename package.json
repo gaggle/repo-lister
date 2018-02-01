@@ -5,20 +5,15 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "next build",
-    "build-storybook": "build-storybook",
     "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
-    "deploy": "./scripts/deploy",
-    "deploy:ci": "./scripts/ci-deploy",
-    "export": "next export",
+    "deploy": "npm run export && scripts/deploy",
+    "deploy:ci": "scripts/ci-deploy",
+    "export": "npm run build && scripts/export",
     "lint": "standard",
-    "posttest": "npm run export",
-    "postexport": "touch out/.nojekyll && echo list.jonlauridsen.com > out/CNAME && mkdir -p out/fonts/ionicons && cp ./node_modules/ionicons/dist/fonts/* out/fonts/ionicons/",
-    "predeploy": "npm run export",
-    "preexport": "npm run build",
-    "prestart": "npm run build",
-    "start": "node server",
-    "storybook": "start-storybook -p 6006",
-    "test": "jest"
+    "start": "npm run build && node server",
+    "stories": "start-storybook -p 6006",
+    "test": "jest",
+    "posttest": "npm run export"
   },
   "repository": {
     "type": "git",
