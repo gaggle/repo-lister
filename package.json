@@ -5,9 +5,9 @@
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
-    "deploy": "npm run export && scripts/deploy",
-    "deploy:ci": "scripts/ci-deploy",
-    "export": "npm run build && scripts/export",
+    "deploy": "npm run export && ./scripts/deploy",
+    "deploy:ci": "./scripts/ci-deploy",
+    "export": "npm run build && ./scripts/export",
     "lint": "standard",
     "start": "npm run build && node server",
     "stories": "start-storybook -p 6006",
