@@ -69,6 +69,14 @@ export default class Timestamp extends Component {
   }
 }
 
+export function clearPooledTimer () {
+  if (!Timestamp.pooledTimer) return
+
+  clearInterval(Timestamp.pooledTimer)
+  Timestamp.pooledTimer = null
+  Timestamp.pooledElements = []
+}
+
 function ensurePooledTimer (interval) {
   if (Timestamp.pooledTimer) return
 
@@ -77,14 +85,6 @@ function ensurePooledTimer (interval) {
       element.update()
     })
   }, interval)
-}
-
-export function clearPooledTimer () {
-  if (!Timestamp.pooledTimer) return
-
-  clearInterval(Timestamp.pooledTimer)
-  Timestamp.pooledTimer = null
-  Timestamp.pooledElements = []
 }
 
 function pushPooledElement (element) {
