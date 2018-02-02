@@ -1,12 +1,9 @@
-/* eslint-env jest */
-
 import MockDate from 'mockdate'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 
 import App from '../pages/index.js'
-
 
 describe('With Enzyme', () => {
   it('App shows "List of posts" heading', () => {
@@ -17,8 +14,9 @@ describe('With Enzyme', () => {
 })
 
 describe('With Snapshot Testing', () => {
+  beforeEach(() => MockDate.set('1/1/2000'))
+
   it('App matches snapshot', () => {
-    MockDate.set('1/1/2000')
     const component = renderer.create(<App posts={[{id: 1}]}/>)
     const tree = component.toJSON()
 
