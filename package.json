@@ -11,8 +11,8 @@
     "lint": "standard",
     "start": "npm run build && ./scripts/serve",
     "stories": "start-storybook -p 6006",
-    "test": "jest",
-    "posttest": "npm run export"
+    "test": "jest && npm run export",
+    "test:update": "jest -u"
   },
   "repository": {
     "type": "git",
