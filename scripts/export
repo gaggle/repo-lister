@@ -2,7 +2,9 @@
 
 OUTPUT_FOLDER=${1:-out}  # Default to 'out' folder
 
-PATH=$(npm bin):$PATH next export -o ${OUTPUT_FOLDER}
+PATH=$(npm bin):$PATH next export -o ${OUTPUT_FOLDER} &
+PATH=$(npm bin):$PATH build-storybook -o ${OUTPUT_FOLDER}/storybook &
+wait
 
 touch ${OUTPUT_FOLDER}/.nojekyll
 
