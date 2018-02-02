@@ -9,7 +9,7 @@
     "deploy:ci": "./scripts/ci-deploy",
     "export": "npm run build && ./scripts/export",
     "lint": "standard",
-    "start": "npm run build && node server",
+    "start": "npm run build && ./scripts/serve",
     "stories": "start-storybook -p 6006",
     "test": "jest",
     "posttest": "npm run export"
@@ -55,14 +55,10 @@
     "standard": "^10.0.3"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/shim.js",
-      "<rootDir>/setupTests.js"
-    ],
     "collectCoverage": true,
     "coverageReporters": [
-      "text-summary",
-      "html"
+      "html",
+      "text-summary"
     ],
     "collectCoverageFrom": [
       "**/*.js"
@@ -73,8 +69,13 @@
       "<rootDir>/out/",
       "<rootDir>/stories/"
     ],
+    "setupFiles": [
+      "<rootDir>/tests/__mocks__/shim.js",
+      "<rootDir>/tests/__mocks__/setupTests.js"
+    ],
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+      "\\.(css|scss)$": "<rootDir>/tests/__mocks__/styleMock.js"
+    },
+    "testRegex": "(\/tests\/.*\\.(test|spec))\\.jsx?$"
   }
 }
