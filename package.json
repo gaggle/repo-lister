@@ -61,7 +61,8 @@
       "text-summary"
     ],
     "collectCoverageFrom": [
-      "**/*.js"
+      "**/*.js",
+      "!*.js"
     ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/coverage/",
