@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`With Snapshot Testing Element matches snapshot 1`] = `
+<main>
+  <nav
+    className="navbar navbar-expand-md pt-3 pb-3 navbar navbar-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="icon ion-md-home mr-1"
+      />
+      Home
+    </a>
+  </nav>
+  <h1>
+    Foo
+  </h1>
+  <p>
+    Content goes here
+  </p>
+  <div
+    className="mt-5"
+  >
+    <div
+      className="clicker border border-secondary rounded"
+    >
+      <div
+        className="clicker-display d-flex align-items-center bg-light text-secondary"
+      >
+        <div
+          className="mx-auto display-1"
+        >
+          0
+        </div>
+      </div>
+      <div
+        className="clicker-button-panel d-flex flex-row"
+      >
+        <button
+          className="btn btn-success w-100"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-plus fa-2x"
+          >
+            incr
+          </i>
+        </button>
+        <button
+          className="btn btn-warning w-100"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-refresh fa-2x"
+          >
+            reset
+          </i>
+        </button>
+        <button
+          className="btn btn-danger w-100"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-minus fa-2x"
+          >
+            decr
+          </i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    Go back home
+  </a>
+  <footer>
+    <div
+      className="col-md-offset-3 text-center container"
+    >
+      <hr
+        className="mt-3"
+      />
+      <p
+        className="text-muted small"
+      >
+        <span>
+           Updated 
+        </span>
+        <time
+          className="font-weight-bold"
+          data-dateepoch={946684800000}
+          data-datetime="2000-01-01T00:00:00.000+00:00"
+          title="January 1st 2000, 00:00:00"
+        >
+          less than 5 seconds ago
+        </time>
+        <span>
+          , built with 
+        </span>
+        <a
+          className="text-muted font-weight-bold"
+          href="https://github.com/zeit/next.js"
+          onClick={[Function]}
+        >
+          Next.js
+        </a>
+        .
+      </p>
+    </div>
+  </footer>
+</main>
+`;
