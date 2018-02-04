@@ -9,11 +9,15 @@ storiesOf('Timestamp', module)
     <div>
       <div>
         <h1>epoch</h1>
-        <div><Timestamp startDate='320371200000'/></div>
+        <Timestamp startDate='320371200000'/>
+      </div>
+      <div>
+        <h1>strings</h1>
+        <Timestamp startDate='1980-02-26T00:00:00+00:00'/>
       </div>
       <div>
         <h1>datetime</h1>
-        <div><Timestamp startDate='1980-02-26T00:00:00+00:00'/></div>
+        <Timestamp startDate={new Date(1980, 2, 26)}/>
       </div>
     </div>
   ))
