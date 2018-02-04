@@ -5,8 +5,8 @@ import { getDatetime } from '../lib/dates'
 
 export default class Timestamp extends Component {
   static pooledElements = []
-  static pooledTimer = null
   static pooledInterval = 1000
+  static pooledTimer = null
 
   static defaultProps = {
     filter: (d) => { return d },
