@@ -53,14 +53,16 @@ export default class Timestamp extends Component {
    */
   update () {
     const datetime = getDatetime(this.state.start)
-    const content = distanceInWords(
+    const newContent = distanceInWords(
       new Date(),
       datetime,
       {addSuffix: true, includeSeconds: true}
     )
-    this.setState({content}, () => {
-      this.props.onChange(content)
-    })
+    if (newContent !== this.state.content) {
+      this.setState({content: newContent}, () => {
+        this.props.onChange(newContent)
+      })
+    }
   }
 
   render () {
