@@ -17,7 +17,7 @@ export default class Timestamp extends Component {
     super(props)
 
     if (props.date && props.children) {
-      throw new Error('Cannot specify both date and children')
+      throw new Error('Cannot specify date as both attribute and children')
     }
     this.state = {
       content: '',
