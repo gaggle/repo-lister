@@ -1,12 +1,10 @@
 'use strict'
-import lorem from 'lorem-ipsum'
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { Button, Welcome } from '@storybook/react/demo'
 import { linkTo } from '@storybook/addon-links'
 import { storiesOf } from '@storybook/react'
 
-import Post from '../components/post'
 import Clicker from '../components/clicker'
 
 storiesOf('Welcome', module)
@@ -16,18 +14,6 @@ storiesOf('Button', module)
   .add('with text', () => <Button onClick={action('clicked')}>
     Hello Button
   </Button>)
-
-storiesOf('Post', module)
-  .add('simple', () => <Post id='1'
-                             title={lorem({count: 1})}
-                             body={lorem({count: 10})}
-                             key='1'/>)
-  .add('list', () => (
-    <section>
-      <Post id='1' title={lorem({count: 1})} body={lorem({count: 10})} key='1'/>
-      <Post id='2' title={lorem({count: 1})} body={lorem({count: 10})} key='2'/>
-    </section>
-  ))
 
 storiesOf('Clicker', module)
   .add('simple', () => <Clicker data='foo'/>)
