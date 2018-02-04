@@ -4,6 +4,14 @@ const getRoutes = require('./lib/routes')
 module.exports = {
   exportPathMap: getRoutes,
   webpack: (config, {dev}) => {
+
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.loader === 'babel-loader') {
+        rule.options.cacheDirectory = false
+      }
+      return rule
+    })
+
     config.module.rules.push(
       {
         test: /\.(css|scss)/,
@@ -21,6 +29,7 @@ module.exports = {
         loader: 'babel-loader!raw-loader!sass-loader'
       }
     )
+
     return config
   }
 }
