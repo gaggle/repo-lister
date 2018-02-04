@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { distanceInWords, format } from 'date-fns'
 
@@ -8,20 +9,26 @@ export default class Timestamp extends Component {
   static pooledInterval = 1000
   static pooledTimer = null
 
+  static propTypes = {
+    onChange: PropTypes.func,
+    startDate: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
+  }
+
   static defaultProps = {
     filter: (d) => { return d },
-    onChange: () => {}
+    onChange: () => {},
+    startDate: null,
   }
 
   constructor (props) {
     super(props)
 
-    if (props.date && props.children) {
-      throw new Error('Cannot specify date as both attribute and children')
-    }
     this.state = {
       content: '',
-      start: getDatetime(props.date || props.children || new Date()),
+      start: getDatetime(props.startDate),
     }
   }
 
