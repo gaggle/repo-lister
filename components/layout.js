@@ -12,8 +12,7 @@ export default class extends Component {
 
   static propTypes () {
     return {
-      children: PropTypes.object.isRequired,
-      fluid: PropTypes.boolean
+      children: PropTypes.node.isRequired,
     }
   }
 
