@@ -42,7 +42,7 @@ export default class extends Component {
             <p className="text-muted small">
               <span> Updated </span>
               <Timestamp className="font-weight-bold"
-                         startDate={new Date()}>
+                         startDate={process.env.BUILD_DATE}>
               </Timestamp>
               <span>, built with </span>
               <Link href="https://github.com/zeit/next.js">
