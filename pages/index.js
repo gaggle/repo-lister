@@ -9,7 +9,6 @@ import Post from '../components/post'
 export default class extends Component {
   static async getInitialProps () {
     return {
-      buildDate: new Date(),
       content: lorem({count: 10}),
       posts: data
     }

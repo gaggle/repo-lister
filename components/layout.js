@@ -41,8 +41,8 @@ export default class extends Component {
             <hr className="mt-3"/>
             <p className="text-muted small">
               <span> Updated </span>
-              <Timestamp className="font-weight-bold">
-                {this.props.buildDate}
+              <Timestamp className="font-weight-bold"
+                         startDate={new Date()}>
               </Timestamp>
               <span>, built with </span>
               <Link href="https://github.com/zeit/next.js">
