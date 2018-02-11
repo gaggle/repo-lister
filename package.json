@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "build": "next build",
     "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
     "deploy": "npm run export && ./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
-    "export": "npm run build && ./scripts/export",
-    "start": "npm run build && ./scripts/serve",
+    "export": "next build && ./scripts/export",
+    "start": "next build && ./scripts/serve",
     "stories": "start-storybook -p 6006",
     "test": "jest --no-cache && npm run export",
     "test:update": "jest -u --no-cache"
