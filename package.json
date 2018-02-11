@@ -8,10 +8,9 @@
     "deploy": "npm run export && ./scripts/deploy",
     "deploy:ci": "./scripts/ci-deploy",
     "export": "npm run build && ./scripts/export",
-    "lint": "standard",
     "start": "npm run build && ./scripts/serve",
     "stories": "start-storybook -p 6006",
-    "test": "jest --no-cache && (npm run lint & npm run export)",
+    "test": "jest --no-cache && npm run export",
     "test:update": "jest -u --no-cache"
   },
   "repository": {
@@ -52,8 +51,7 @@
     "jest": "^22.0.5",
     "lorem-ipsum": "^1.0.4",
     "mockdate": "^2.0.2",
-    "react-test-renderer": "^16.2.0",
-    "standard": "^10.0.3"
+    "react-test-renderer": "^16.2.0"
   },
   "babel": {
     "plugins": [
