@@ -17,33 +17,41 @@ Array [
     </a>
   </nav>,
   <div
-    className="container"
+    className="container-fluid"
   >
-    <h2
-      className="text-center display-4 mt-5 mb-2"
-    >
-      Headline
-    </h2>
-    <div />
     <h2
       className="text-center display-4 mt-5 mb-2"
     >
       List of posts
     </h2>
-    <section>
-      <article>
-        <h3
-          className="mt-5"
-        />
-        <p />
-        <a
-          href="/post/1"
-          onClick={[Function]}
+    <div
+      className="card-columns"
+      column-count="2"
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="card-body"
         >
-          Read more...
-        </a>
-      </article>
-    </section>
+          <h2
+            className="card-title"
+          >
+            1 undefined
+          </h2>
+          <p
+            className="card-text"
+          />
+          <button
+            className="btn-sm btn btn-secondary"
+            onClick={[Function]}
+            type={undefined}
+          >
+            More info
+          </button>
+        </div>
+      </div>
+    </div>
   </div>,
   <footer>
     <div
