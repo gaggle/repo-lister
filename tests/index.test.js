@@ -9,7 +9,7 @@ describe('With Enzyme', () => {
   it('App shows "List of posts" heading', () => {
     const app = shallow(<App posts={[{id: 1}]}/>)
 
-    expect(app.find('h2').length).toEqual(2)
+    expect(app.find('h2').length).toEqual(1)
   })
 })
 
