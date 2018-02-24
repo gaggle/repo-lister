@@ -18,8 +18,7 @@ export default class Timestamp extends Component {
   }
 
   static defaultProps = {
-    onChange: () => {},
-    startDate: null,
+    onChange: () => {}
   }
 
   constructor (props) {
