@@ -26,29 +26,100 @@ Array [
     </h2>
     <div
       className="card-columns"
-      column-count="2"
     >
       <div
-        className="card"
+        className="jsx-3555720613 RepoCard"
       >
         <div
-          className="card-body"
+          className="Foo card"
         >
-          <h2
-            className="card-title"
+          <div
+            className="card-body"
           >
-            1 undefined
-          </h2>
-          <p
-            className="card-text"
-          />
-          <button
-            className="btn-sm btn btn-secondary"
-            onClick={[Function]}
-            type={undefined}
-          >
-            More info
-          </button>
+            <h4
+              className="card-title"
+            >
+              <div
+                className="jsx-3555720613"
+              >
+                <div
+                  className="jsx-3555720613"
+                >
+                  <a
+                    className="jsx-3555720613"
+                    href="html_url"
+                    onClick={[Function]}
+                  >
+                    login
+                  </a>
+                   / 
+                  <a
+                    className="jsx-3555720613"
+                    href="html_url"
+                    onClick={[Function]}
+                  >
+                    name
+                  </a>
+                </div>
+              </div>
+            </h4>
+            <p
+              className="card-text"
+            >
+              description
+            </p>
+            <p
+              className="gh-stats card-text"
+            >
+              <span
+                className="gh-stat"
+              >
+                <span
+                  className="jsx-1381536161 lang"
+                >
+                  ●
+                </span>
+                <span
+                  className="jsx-1381536161"
+                >
+                  language
+                </span>
+              </span>
+              <span
+                className="gh-stat"
+              >
+                <a
+                  href="html_url/issues"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="icon ion-md-information-circle mr-1"
+                  />
+                  0
+                </a>
+              </span>
+              <span
+                className="gh-stat"
+              >
+                <a
+                  href="html_url/pulls"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="icon ion-md-git-pull-request mr-1"
+                  />
+                  0
+                </a>
+              </span>
+            </p>
+            <button
+              className="btn-sm btn btn-secondary"
+              onClick={[Function]}
+              type={undefined}
+            >
+              More info
+            </button>
+          </div>
         </div>
       </div>
     </div>
