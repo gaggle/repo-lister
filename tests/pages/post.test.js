@@ -21,12 +21,9 @@ describe('With Snapshot Testing', () => {
 describe('getInitialProps', () => {
   it('returns', async () => {
     expect(await Post.getInitialProps({query: {id: 1}})).toEqual({
-      id: 1,
-      title: 'title for 1',
-      body: 'quia et suscipit\n' +
-      'suscipit recusandae consequuntur expedita et cum\n' +
-      'reprehenderit molestiae ut ut quas totam\n' +
-      'nostrum rerum est autem sunt rem eveniet architecto'
+      'body': undefined,
+      'id': 1,
+      'title': 'title for 1',
     })
   })
 })
