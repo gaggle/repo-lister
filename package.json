@@ -8,7 +8,7 @@
     "deploy:ci": "./scripts/ci-deploy",
     "export": "next build && ./scripts/export",
     "start": "next build && ./scripts/serve",
-    "stories": "start-storybook -p 6006",
+    "stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
     "test": "jest --no-cache && npm run export",
     "test:update": "jest -u --no-cache"
   },
