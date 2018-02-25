@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 class Clicker extends Component {
+
   static propTypes = {
     count: PropTypes.number
   }
