@@ -11,7 +11,7 @@ class Clicker extends Component {
   }
 
   constructor (props) {
-    super()
+    super(props)
 
     this.state = {
       count: props.count
