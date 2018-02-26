@@ -45,7 +45,8 @@
     "react-dom": "^16.2.0",
     "reactstrap": "^5.0.0-alpha.4",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.2"
+    "style-loader": "^0.20.2",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
