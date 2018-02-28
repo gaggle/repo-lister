@@ -10,5 +10,5 @@ touch ${OUTPUT_FOLDER}/.nojekyll
 
 echo list.jonlauridsen.com > ${OUTPUT_FOLDER}/CNAME
 
-mkdir -p ${OUTPUT_FOLDER}/fonts/ionicons
-cp ./node_modules/ionicons/dist/fonts/* ${OUTPUT_FOLDER}/fonts/ionicons/
+mkdir -p ${OUTPUT_FOLDER}/fonts
+cp ./node_modules/ionicons/dist/fonts/* ${OUTPUT_FOLDER}/fonts/
