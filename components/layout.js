@@ -10,10 +10,8 @@ import Styles from '../css/index.scss'
 
 export default class extends Component {
 
-  static propTypes () {
-    return {
-      children: PropTypes.node.isRequired,
-    }
+  static propTypes = {
+    children: PropTypes.node.isRequired,
   }
 
   render () {

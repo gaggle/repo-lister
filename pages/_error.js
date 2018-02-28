@@ -1,9 +1,10 @@
 /**
  * Creating a page named _error.js lets you override HTTP error messages
  */
-import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Container } from 'reactstrap'
 
 import Styles from '../css/index.scss'
@@ -12,8 +13,8 @@ export default class Error extends React.Component {
 
   static propTypes () {
     return {
-      errorCode: React.PropTypes.number.isRequired,
-      url: React.PropTypes.string.isRequired
+      errorCode: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired
     }
   }
 
