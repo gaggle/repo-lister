@@ -1,8 +1,16 @@
-import { addDecorator, configure } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
+import chaptersAddon, { setDefaults } from 'react-storybook-addon-chapters'
+import { configure, setAddon } from '@storybook/react'
 import '../css/index.scss'
 
-addDecorator((story, context) => withInfo('common info')(story)(context));
+setDefaults({
+  sectionOptions: {
+    showSource: false,
+    allowSourceToggling: true,
+    showPropTables: false,
+    allowPropTablesToggling: true,
+  }
+})
+setAddon(chaptersAddon)
 
 const req = require.context('../stories', true, /.stories.js$/)
 
