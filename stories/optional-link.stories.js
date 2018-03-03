@@ -6,82 +6,82 @@ import { storiesOf } from '@storybook/react'
 import OptionalLink from '../components/optional-link'
 
 storiesOf('OptionalLink', module)
-  .add('simple', () =>
-    <div>
-      <div>w. href</div>
-      <OptionalLink href={'foo'}>
-        <a>Read more...</a>
-      </OptionalLink>
-      <div>Bare</div>
-      <OptionalLink>
-        <a>Read more...</a>
-      </OptionalLink>
-
-      <div>
-        Multiple OptionalLinks
-        <div>
-          <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
-          <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
-        </div>
-      </div>
-
-      <div>
-        Multiple OptionalLinks w/o href
-        <div>
-          <OptionalLink><a>Read more...</a></OptionalLink>
-          <OptionalLink><a>Read more...</a></OptionalLink>
-        </div>
-      </div>
-
-    </div>
-  )
-  .add('compare to Link', () =>
-    <div>
-      <div>
-        Link w. href
-        <div>
-          <Link href={'foo'}>
-            <a>Read more...</a>
-          </Link>
-        </div>
-      </div>
-      <div>
-        OptionalLink w. href
-        <div>
-          <OptionalLink href={'foo'}>
-            <a>Read more...</a>
-          </OptionalLink>
-        </div>
-      </div>
-      <div>
-        Link w. href & as
-        <div>
-          <Link href={'foo'} as={'bar'}>
-            <a>Read more...</a>
-          </Link>
-        </div>
-      </div>
-      <div>
-        OptionalLink w. href & as
-        <div>
-          <OptionalLink href={'foo'} as={'bar'}>
-            <a>Read more...</a>
-          </OptionalLink>
-        </div>
-      </div>
-      <div>
-        Multiple Links
-        <div>
-          <Link href={'foo'}><a>Read more...</a></Link>
-          <Link href={'foo'}><a>Read more...</a></Link>
-        </div>
-      </div>
-      <div>
-        Multiple OptionalLinks
-        <div>
-          <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
-          <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
-        </div>
-      </div>
-    </div>
-  )
+  .addWithChapters('Simple', {
+    chapters: [{
+      sections: [
+        {
+          title: 'With href',
+          sectionFn: () =>
+            <OptionalLink href={'foo'}>
+              <a>Read more...</a>
+            </OptionalLink>
+        },
+        {
+          title: 'Bare',
+          sectionFn: () =>
+            <OptionalLink>
+              <a>Read more...</a>
+            </OptionalLink>
+        },
+        {
+          title: 'Multiple OptionalLinks',
+          sectionFn: () =>
+            <div>
+              <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
+              <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
+            </div>
+        },
+        {
+          title: 'Multiple OptionalLinks w/o href',
+          sectionFn: () =>
+            <div>
+              <OptionalLink><a>Read more...</a></OptionalLink>
+              <OptionalLink><a>Read more...</a></OptionalLink>
+            </div>
+        }]
+    }]
+  })
+  .addWithChapters('Compare to Link', {
+    chapters: [{
+      sections: [
+        {
+          title: 'With href',
+          sectionFn: () =>
+            <div>
+              <OptionalLink href={'foo'}>
+                <a>Read more...</a>
+              </OptionalLink>
+              <Link href={'foo'}>
+                <a>Read more...</a>
+              </Link>
+            </div>
+        },
+        {
+          title: 'With href and as',
+          sectionFn: () =>
+            <div>
+              <OptionalLink href={'foo'} as={'bar'}>
+                <a>Read more...</a>
+              </OptionalLink>
+              <Link href={'foo'} as={'bar'}>
+                <a>Read more...</a>
+              </Link>
+            </div>
+        },
+        {
+          title: 'Multiple links',
+          sectionFn: () =>
+            <div>
+              <div>
+                <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
+                <OptionalLink href={'foo'}><a>Read more...</a></OptionalLink>
+              </div>
+              <div>
+                <Link href={'foo'}><a>Read more...</a></Link>
+                <Link href={'foo'}><a>Read more...</a></Link>
+              </div>
+            </div>
+        }
+      ]
+    }]
+  })
