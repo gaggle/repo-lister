@@ -10,6 +10,12 @@ module.exports = (config, configType) => {
     test: /\.scss$/,
     loaders: ['style-loader', 'css-loader', 'sass-loader'],
     include: path.resolve(__dirname, '../')
+  }, {
+    test: /\.js$/,
+    exclude: /(node_modules|bower_components)/,
+    use: {
+      loader: 'babel-loader',
+    }
   })
 
   return config
