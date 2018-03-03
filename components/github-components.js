@@ -10,12 +10,6 @@ class GithubStat extends Component {
     return (
       <span className='gh-stat' {...this.props}>
         {this.props.children}
-        <style jsx="true">{`
-          .gh-stat {
-            margin: 0 4px;
-            padding: 1px 4px;
-          }
-        `}</style>
       </span>
     )
   }

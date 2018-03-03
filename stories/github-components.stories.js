@@ -49,17 +49,19 @@ storiesOf('GitHub components', module)
         },
         {
           title: 'Count and URL',
-          sectionFn: () => <PullRequests
-            open_issues_count='1'
-            html_url={'https://github.com/foo/bar'}
-          />
+          sectionFn: () =>
+            <PullRequests
+              open_issues_count='1'
+              html_url={'https://github.com/foo/bar'}
+            />
         },
         {
           title: 'Trailing URL slash',
-          sectionFn: () => <PullRequests
-            open_issues_count='1'
-            html_url={'https://github.com/foo/bar/'}
-          />
+          sectionFn: () =>
+            <PullRequests
+              open_issues_count='1'
+              html_url={'https://github.com/foo/bar/'}
+            />
         },
         {
           title: 'Only count',
@@ -77,12 +79,18 @@ storiesOf('GitHub components', module)
   .addWithChapters('Multiple', {
     chapters: [{
       sections: [{
-        sectionFn: () => (<div>
-          <Language language='Python'/>
-          <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
-          <PullRequests open_issues_count="1"
-                        html_url="https://github.com/foo/bar"/>
-        </div>)
+        sectionFn: () =>
+          <div className="multiple">
+            <Language language='Python'/>
+            <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
+            <PullRequests open_issues_count="1"
+                          html_url="https://github.com/foo/bar"/>
+            <style jsx="true">{`
+              .multiple :global(> *) {
+                margin: 4px;
+              }
+            `}</style>
+          </div>
       }]
     }]
   })
