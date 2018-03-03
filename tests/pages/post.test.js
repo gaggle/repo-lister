@@ -2,7 +2,7 @@ import MockDate from 'mockdate'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Post from '../pages/post.js'
+import Post from '../../pages/post.js'
 
 describe('With Snapshot Testing', () => {
   beforeEach(() => MockDate.set('1/1/2000'))
