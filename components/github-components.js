@@ -52,13 +52,13 @@ export class Language extends Component {
 export class Issues extends Component {
 
   static defaultProps = {
-    count: undefined,
-    url: undefined
+    html_url: undefined,
+    open_issues_count: undefined,
   }
 
   constructor (props) {
     super(props)
-    this.url = props.url ? urljoin(this.props.url, 'issues') : null
+    this.url = props.html_url ? urljoin(this.props.html_url, 'issues') : null
   }
 
   render () {
@@ -66,7 +66,7 @@ export class Issues extends Component {
       <GithubStat>
         <OptionalLink href={this.url}><a>
           <span className="icon ion-md-information-circle mr-1"/>
-          {this.props.count}
+          {this.props.open_issues_count}
         </a></OptionalLink>
       </GithubStat>
     )

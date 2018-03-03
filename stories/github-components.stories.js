@@ -21,21 +21,21 @@ storiesOf('GitHub components', module)
         },
         {
           title: 'Count and URL',
-          sectionFn: () => <Issues count='1'
-                                   url={'https://github.com/foo/bar'}/>,
+          sectionFn: () => <Issues open_issues_count='1'
+                                   html_url={'https://github.com/foo/bar'}/>,
         },
         {
           title: 'Trailing URL slash',
-          sectionFn: () => <Issues count='1'
-                                   url={'https://github.com/foo/bar/'}/>
+          sectionFn: () => <Issues open_issues_count='1'
+                                   html_url={'https://github.com/foo/bar'}/>
         },
         {
           title: 'Only count',
-          sectionFn: () => <Issues count='1'/>
+          sectionFn: () => <Issues open_issues_count='1'/>
         },
         {
           title: 'Only URL',
-          sectionFn: () => <Issues url={'https://github.com/foo/bar'}/>
+          sectionFn: () => <Issues html_url={'https://github.com/foo/bar'}/>
         },
       ]
     }]
@@ -79,7 +79,7 @@ storiesOf('GitHub components', module)
       sections: [{
         sectionFn: () => (<div>
           <Language language='Python'/>
-          <Issues count='1' url={'https://github.com/foo/bar'}/>
+          <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
           <PullRequests open_issues_count="1"
                         html_url="https://github.com/foo/bar"/>
         </div>)
