@@ -1,4 +1,4 @@
-import renderIf, { renderIfElse } from '../lib/render-if'
+import renderIf, { renderIfElse } from '../../lib/render-if'
 
 describe('renderIf', () => {
   it('calls function if condition is true', done => {

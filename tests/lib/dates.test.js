@@ -1,4 +1,4 @@
-import { getDatetime } from '../lib/dates'
+import { getDatetime } from '../../lib/dates'
 
 describe('getDatetime', () => {
   it('understands epoch', () => {

@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 
-import App from '../pages/index.js'
+import App from '../../pages/index.js'
 
 describe('With Enzyme', () => {
   it('App shows "List of posts" heading', () => {
