@@ -72,41 +72,48 @@ Array [
               className="gh-stats card-text"
             >
               <span
-                className="gh-stat"
+                className="jsx-2393098220 language-container"
               >
                 <span
-                  className="jsx-1381536161 lang"
+                  className="jsx-2393098220 color"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
                 >
                   ●
                 </span>
                 <span
-                  className="jsx-1381536161"
+                  className="jsx-2393098220 text"
                 >
                   language
                 </span>
               </span>
               <span
-                className="gh-stat"
+                className="jsx-2564559751 issues-container"
               >
                 <a
+                  className="jsx-2564559751"
                   href="html_url/issues"
                   onClick={[Function]}
                 >
                   <span
-                    className="icon ion-md-information-circle mr-1"
+                    className="jsx-2564559751 icon ion-md-information-circle mr-1"
                   />
                   0
                 </a>
               </span>
               <span
-                className="gh-stat"
+                className="jsx-1533896771 pr-container"
               >
                 <a
+                  className="jsx-1533896771"
                   href="html_url/pulls"
                   onClick={[Function]}
                 >
                   <span
-                    className="icon ion-md-git-pull-request mr-1"
+                    className="jsx-1533896771 icon ion-md-git-pull-request mr-1"
                   />
                   0
                 </a>
