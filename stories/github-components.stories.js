@@ -6,10 +6,49 @@ import { Issues, Language, PullRequests } from '../components/github-components'
 storiesOf('GitHub components', module)
   .addWithChapters('Language', {
     chapters: [{
-      sections: [{
-        title: 'Shell',
-        sectionFn: () => <Language language="Shell"/>,
-      }]
+      sections: [
+        {
+          title: 'Languages',
+          sectionFn: () =>
+            <div>
+              <Language language="Shell"/>
+              <Language language="Python"/>
+            </div>
+        },
+        {
+          title: 'Unknown language',
+          sectionFn: () => <Language language="Foo"/>
+        },
+        {
+          title: 'Narrow',
+          sectionFn: () =>
+            <div className="root">
+              <div>
+                <Language language="Python"/>
+                <Language language="Python"/>
+              </div>
+              <div className="medium">
+                <Language language="JavaScript"/>
+                <Language language="JavaScript"/>
+              </div>
+              <div className="narrow">
+                <Language language="Ruby"/>
+                <Language language="Ruby"/>
+              </div>
+              <style jsx>{`
+                .root :global(> *) {
+                  background-color:pink;
+                }
+                .medium {
+                  width: 150px;
+                }
+                .narrow {
+                  width: 35px;
+                }
+              `}</style>
+            </div>
+        },
+      ]
     }]
   })
   .addWithChapters('Issues', {
@@ -36,6 +75,35 @@ storiesOf('GitHub components', module)
         {
           title: 'Only URL',
           sectionFn: () => <Issues html_url={'https://github.com/foo/bar'}/>
+        },
+        {
+          title: 'Narrow',
+          sectionFn: () =>
+            <div className="root">
+              <div>
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <div className="medium">
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <div className="narrow">
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <style jsx>{`
+                .root :global(> *) {
+                  background-color:pink;
+                }
+                .medium {
+                  width: 45px;
+                }
+                .narrow {
+                  width: 20px;
+                }
+              `}</style>
+            </div>
         },
       ]
     }]
@@ -72,6 +140,35 @@ storiesOf('GitHub components', module)
           sectionFn: () => <PullRequests
             html_url={'https://github.com/foo/bar/'}
           />
+        },
+        {
+          title: 'Narrow',
+          sectionFn: () =>
+            <div className="root">
+              <div>
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <div className="medium">
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <div className="narrow">
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+              </div>
+              <style jsx>{`
+                .root :global(> *) {
+                  background-color:pink;
+                }
+                .medium {
+                  width: 45px;
+                }
+                .narrow {
+                  width: 20px;
+                }
+              `}</style>
+            </div>
         },
       ]
     }]
