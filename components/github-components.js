@@ -2,6 +2,7 @@ import GithubColors from 'github-colors'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import urljoin from 'url-join'
+import { capitalize } from 'lodash'
 
 import OptionalLink from './optional-link'
 
@@ -13,17 +14,25 @@ export class Language extends Component {
 
   constructor (props) {
     super(props)
-    const lookup = GithubColors.get(this.props.language)
+    const lookup = GithubColors.get(props.language)
+    if (!lookup) {
+      console.warn(`Could not identify language '${props.language}'`)
+    }
     this.color = lookup ? `color: ${lookup.color};` : ''
+    this.text = lookup ? capitalize(lookup.ace_mode) : props.language
   }
 
   render () {
     return (
-      <span>
-        <span className="lang">●</span>
-        <span>{this.props.language}</span>
+      <span className="language-container">
+        <span className="color">●</span>
+        <span className="text">{this.text}</span>
         <style jsx>{`
-          .lang {
+          .language-container {
+            display: inline-block;
+            white-space: nowrap;
+          }
+          .color {
             ${this.color}
             padding-right: 4px;
           }
@@ -47,11 +56,17 @@ export class Issues extends Component {
 
   render () {
     return (
-      <span>
+      <span className="issues-container">
         <OptionalLink href={this.url}><a>
           <span className="icon ion-md-information-circle mr-1"/>
           {this.props.open_issues_count}
         </a></OptionalLink>
+        <style jsx>{`
+          .issues-container {
+            display: inline-block;
+            white-space: nowrap;
+          }
+        `}</style>
       </span>
     )
   }
@@ -71,11 +86,17 @@ export class PullRequests extends Component {
 
   render () {
     return (
-      <span>
+      <span className="pr-container">
         <OptionalLink href={this.url}><a>
           <span className="icon ion-md-git-pull-request mr-1"/>
           {this.props.open_issues_count}
         </a></OptionalLink>
+        <style jsx>{`
+          .pr-container {
+            display: inline-block;
+            white-space: nowrap;
+          }
+        `}</style>
       </span>
     )
   }
