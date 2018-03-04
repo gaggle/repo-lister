@@ -22,7 +22,7 @@ storiesOf('GitHub components', module)
         {
           title: 'Count and URL',
           sectionFn: () => <Issues open_issues_count='1'
-                                   html_url={'https://github.com/foo/bar'}/>,
+                                   html_url={'https://github.com/foo/bar'}/>
         },
         {
           title: 'Trailing URL slash',
