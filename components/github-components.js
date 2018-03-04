@@ -5,16 +5,6 @@ import urljoin from 'url-join'
 
 import OptionalLink from './optional-link'
 
-class GithubStat extends Component {
-  render () {
-    return (
-      <span className='gh-stat' {...this.props}>
-        {this.props.children}
-      </span>
-    )
-  }
-}
-
 export class Language extends Component {
 
   static propTypes = {
@@ -29,7 +19,7 @@ export class Language extends Component {
 
   render () {
     return (
-      <GithubStat>
+      <span>
         <span className="lang">●</span>
         <span>{this.props.language}</span>
         <style jsx>{`
@@ -38,7 +28,7 @@ export class Language extends Component {
             padding-right: 4px;
           }
         `}</style>
-      </GithubStat>
+      </span>
     )
   }
 }
@@ -57,12 +47,12 @@ export class Issues extends Component {
 
   render () {
     return (
-      <GithubStat>
+      <span>
         <OptionalLink href={this.url}><a>
           <span className="icon ion-md-information-circle mr-1"/>
           {this.props.open_issues_count}
         </a></OptionalLink>
-      </GithubStat>
+      </span>
     )
   }
 }
@@ -81,12 +71,12 @@ export class PullRequests extends Component {
 
   render () {
     return (
-      <GithubStat>
+      <span>
         <OptionalLink href={this.url}><a>
           <span className="icon ion-md-git-pull-request mr-1"/>
           {this.props.open_issues_count}
         </a></OptionalLink>
-      </GithubStat>
+      </span>
     )
   }
 }
