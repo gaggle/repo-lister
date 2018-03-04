@@ -2,9 +2,12 @@
 
 OUTPUT_FOLDER=${1:-out}  # Default to 'out' folder
 
-PATH=$(npm bin):$PATH next export -o ${OUTPUT_FOLDER} &
-PATH=$(npm bin):$PATH build-storybook -o ${OUTPUT_FOLDER}/storybook &
-wait
+(PATH=$(npm bin):$PATH next export -o ${OUTPUT_FOLDER}) & A=$!
+(PATH=$(npm bin):$PATH build-storybook -o ${OUTPUT_FOLDER}/storybook) & B=$1
+
+wait ${A} && wait ${B}
+exit_code=$?
+if [[ ${exit_code} != 0 ]]; then exit ${exit_code}; fi
 
 touch ${OUTPUT_FOLDER}/.nojekyll
 
