@@ -32,7 +32,7 @@ export class Language extends Component {
       <GithubStat>
         <span className="lang">●</span>
         <span>{this.props.language}</span>
-        <style jsx="true">{`
+        <style jsx>{`
           .lang {
             ${this.color}
             padding-right: 4px;

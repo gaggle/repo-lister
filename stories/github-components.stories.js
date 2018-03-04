@@ -85,7 +85,7 @@ storiesOf('GitHub components', module)
             <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
             <PullRequests open_issues_count="1"
                           html_url="https://github.com/foo/bar"/>
-            <style jsx="true">{`
+            <style jsx>{`
               .multiple :global(> *) {
                 margin: 4px;
               }

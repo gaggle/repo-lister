@@ -18,7 +18,7 @@ storiesOf('Timestamp', module)
             <div className='times'>
               <Timestamp startDate='1980-02-26T00:00:00+00:00'/>
               <Timestamp startDate='1980-02-26'/>
-              <style jsx="true">{`
+              <style jsx>{`
                 .times :global(> *) {
                   display: block;
                 }
