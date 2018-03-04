@@ -8,8 +8,16 @@ storiesOf('GitHub components', module)
     chapters: [{
       sections: [
         {
-          title: 'Shell',
-          sectionFn: () => <Language language="Shell"/>
+          title: 'Languages',
+          sectionFn: () =>
+            <div>
+              <Language language="Shell"/>
+              <Language language="Python"/>
+            </div>
+        },
+        {
+          title: 'Unknown language',
+          sectionFn: () => <Language language="Foo"/>
         },
         {
           title: 'Narrow',

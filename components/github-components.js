@@ -18,14 +18,14 @@ export class Language extends Component {
     if (!lookup) {
       console.warn(`Could not identify language '${props.language}'`)
     }
-    this.color = lookup ? `color: ${lookup.color};` : ''
+    this.color = lookup ? lookup.color : undefined
     this.text = lookup ? capitalize(lookup.ace_mode) : props.language
   }
 
   render () {
     return (
       <span className="language-container">
-        <span className="color">●</span>
+        <span style={{color: this.color}} className="color">●</span>
         <span className="text">{this.text}</span>
         <style jsx>{`
           .language-container {
@@ -33,7 +33,6 @@ export class Language extends Component {
             white-space: nowrap;
           }
           .color {
-            ${this.color}
             padding-right: 4px;
           }
         `}</style>
