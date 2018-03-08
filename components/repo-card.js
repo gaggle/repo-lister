@@ -2,7 +2,9 @@ import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Button, Card, CardBody, CardColumns, CardText, CardTitle } from 'reactstrap'
+import { pick } from 'lodash'
 
+import queries from '../lib/data-query'
 import renderIf from '../lib/render-if'
 
 import { Issues, Language, PullRequests } from './github-components'
@@ -53,7 +55,7 @@ export class RepoCard extends Component {
   render () {
     return (
       <div className={this.constructor.name}>
-        <Card className="Foo" key={this.props.id}>
+        <Card key={this.props.id}>
           <CardBody>
             <CardTitle>
               <div>
@@ -68,7 +70,9 @@ export class RepoCard extends Component {
                 </div>
               </div>
             </CardTitle>
+
             <CardText>{this.props.description}</CardText>
+
             <CardText className="gh-stats">
               {renderIf(this.props.language, () =>
                 <Language {...this.props} />
@@ -76,7 +80,13 @@ export class RepoCard extends Component {
               <Issues {...this.props} />
               <PullRequests {...this.props} />
             </CardText>
-            <Button className="btn-sm">More info</Button>
+
+            <CardText>
+              <Link href={{pathname: '/repo', query: pick(this.props, queries)}}
+                    as={`/repo/${this.props.full_name}`}>
+                <a>Details</a>
+              </Link>
+            </CardText>
           </CardBody>
         </Card>
         <style jsx="true">{`

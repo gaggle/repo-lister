@@ -11,7 +11,7 @@ export default class extends Component {
     const datum = data[query.id - 1]
     const post = {
       id: 1,
-      title: `title for ${query.id}`,
+      title: `title for ${query.full_name}`,
       body: datum ? datum.body : undefined
     }
     return {...post}
