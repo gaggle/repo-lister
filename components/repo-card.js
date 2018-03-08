@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Button, Card, CardBody, CardColumns, CardText, CardTitle } from 'reactstrap'
+import { Card, CardBody, CardColumns, CardText, CardTitle } from 'reactstrap'
 import { pick } from 'lodash'
 
 import queries from '../lib/data-query-entries'
 import renderIf from '../lib/render-if'
 
+import RepoTitle from './repo-card-title'
 import { Issues, Language, PullRequests } from './github-components'
 
 export class RepoCards extends Component {
@@ -57,19 +58,7 @@ export class RepoCard extends Component {
       <div className={this.constructor.name}>
         <Card key={this.props.id}>
           <CardBody>
-            <CardTitle>
-              <div>
-                <div>
-                  <Link href={this.props.owner.html_url}>
-                    <a>{this.props.owner.login}</a>
-                  </Link>
-                  {' / '}
-                  <Link href={this.props.html_url}>
-                    <a>{this.props.name}</a>
-                  </Link>
-                </div>
-              </div>
-            </CardTitle>
+            <CardTitle><RepoTitle {...this.props}/></CardTitle>
 
             <CardText>{this.props.description}</CardText>
 
