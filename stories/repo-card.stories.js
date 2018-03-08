@@ -2,7 +2,6 @@
 import React from 'react'
 import { RepoCard } from '../components/repo-card'
 import { storiesOf } from '@storybook/react'
-import '../css/index.scss'
 
 const api_entry = {
   'id': 121401277,
