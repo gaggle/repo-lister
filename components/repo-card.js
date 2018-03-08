@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Button, Card, CardBody, CardColumns, CardText, CardTitle } from 'reactstrap'
 import { pick } from 'lodash'
 
-import queries from '../lib/data-query'
+import queries from '../lib/data-query-entries'
 import renderIf from '../lib/render-if'
 
 import { Issues, Language, PullRequests } from './github-components'
