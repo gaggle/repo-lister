@@ -2,13 +2,13 @@ import MockDate from 'mockdate'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Post from '../../pages/post.js'
+import Repo from '../../pages/repo.js'
 
 describe('With Snapshot Testing', () => {
   beforeEach(() => MockDate.set('1/1/2000'))
 
   it('Element matches snapshot', () => {
-    const component = renderer.create(<Post title='Foo'
+    const component = renderer.create(<Repo title='Foo'
                                             body='Content goes here'/>)
     const tree = component.toJSON()
 
@@ -20,10 +20,15 @@ describe('With Snapshot Testing', () => {
 
 describe('getInitialProps', () => {
   it('returns', async () => {
-    expect(await Post.getInitialProps({query: {id: 1}})).toEqual({
+    expect(await Repo.getInitialProps({
+      query: {
+        full_name: 'foo',
+        id: 1,
+      }
+    })).toEqual({
       'body': undefined,
       'id': 1,
-      'title': 'title for 1',
+      'title': 'title for foo',
     })
   })
 })

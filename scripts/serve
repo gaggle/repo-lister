@@ -3,7 +3,7 @@ const express = require('express')
 const next = require('next')
 const {parse} = require('url')
 
-const routes = require('../lib/routes')()
+const getRoutes = require('../lib/routes')()
 
 const ISDEV = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
@@ -20,7 +20,7 @@ app.prepare()
     server.get('*', (req, res) => {
       const parsedUrl = parse(req.url, true)
       const {pathname, query = {}} = parsedUrl
-      const route = routes[pathname]
+      const route = getRoutes[pathname]
       if (route) {
         return app.render(req, res, route.page, route.query)
       }
