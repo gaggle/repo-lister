@@ -27,8 +27,13 @@ export class RepoCards extends Component {
 export class RepoCard extends Component {
 
   static propTypes = {
-    onClick: PropTypes.func,
+    full_name: PropTypes.string.isRequired,
     id: PropTypes.any.isRequired,
+    name: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    owner: PropTypes.shape({
+      login: PropTypes.string.isRequired,
+    }),
   }
 
   static defaultProps = {
