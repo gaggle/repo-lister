@@ -31,7 +31,7 @@ Array [
         className="jsx-3555720613 RepoCard"
       >
         <div
-          className="Foo card"
+          className="card"
         >
           <div
             className="card-body"
@@ -119,13 +119,17 @@ Array [
                 </a>
               </span>
             </p>
-            <button
-              className="btn-sm btn btn-secondary"
-              onClick={[Function]}
-              type={undefined}
+            <p
+              className="card-text"
             >
-              More info
-            </button>
+              <a
+                className="jsx-3555720613"
+                href="/repo/user/name"
+                onClick={[Function]}
+              >
+                Details
+              </a>
+            </p>
           </div>
         </div>
       </div>
