@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Button, Card, CardBody, CardColumns, CardText, CardTitle } from 'reactstrap'
 
-import { Issues, Language, PullRequests } from './github-components'
 import renderIf from '../lib/render-if'
+
+import { Issues, Language, PullRequests } from './github-components'
 
 export class RepoCards extends Component {
 
