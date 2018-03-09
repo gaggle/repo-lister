@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import lorem from 'lorem-ipsum'
 
-import data from '../data.json'
 import Layout from '../components/layout'
 import { RepoCards } from '../components/repo-card'
+
+import fileData from '../data.json'
 
 export default class extends Component {
   static async getInitialProps () {
     return {
       content: lorem({count: 10}),
-      posts: data
+      repos: fileData
     }
   }
 
@@ -18,8 +19,8 @@ export default class extends Component {
     return (
       <Layout {...this.props}>
         <Container fluid={true}>
-          <h2 className="text-center display-4 mt-5 mb-2">List of posts</h2>
-          <RepoCards>{this.props.posts}</RepoCards>
+          <h2 className="text-center display-4 mt-5 mb-2">List of repos</h2>
+          <RepoCards>{this.props.repos}</RepoCards>
         </Container>
       </Layout>
     )

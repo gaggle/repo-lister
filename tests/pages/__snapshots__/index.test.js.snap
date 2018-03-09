@@ -22,7 +22,7 @@ Array [
     <h2
       className="text-center display-4 mt-5 mb-2"
     >
-      List of posts
+      List of repos
     </h2>
     <div
       className="card-columns"
