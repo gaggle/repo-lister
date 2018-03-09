@@ -3,7 +3,7 @@ import React from 'react'
 import { RepoCard } from '../components/repo-card'
 import { storiesOf } from '@storybook/react'
 
-const api_entry = {
+const data = {
   'id': 121401277,
   'name': 'adr-tools',
   'full_name': 'gaggle/adr-tools',
@@ -102,5 +102,5 @@ const api_entry = {
 
 storiesOf('Repo Card', module)
   .add('Simple', () =>
-    <RepoCard {...api_entry}></RepoCard>
+    <RepoCard {...data}></RepoCard>
   )
