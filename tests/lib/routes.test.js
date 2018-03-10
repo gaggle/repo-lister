@@ -26,7 +26,7 @@ describe('routes', () => {
   })
 })
 
-describe('routes with default data', () => {
+describe('routes with real data', () => {
   it('specifies root page', () => {
     expect(routes())
       .toEqual(expect.objectContaining({'/': {'page': '/'}}))
