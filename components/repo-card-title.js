@@ -14,12 +14,7 @@ export default class extends Component {
   }
 
   static defaultProps = {
-    html_url: 'html_url',
-    name: 'name',
-    owner: {
-      html_url: 'html_url',
-      login: 'login',
-    },
+    owner: {},
   }
 
   render () {
