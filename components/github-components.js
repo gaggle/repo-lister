@@ -100,3 +100,20 @@ export class PullRequests extends Component {
     )
   }
 }
+
+export class ReadmeBadge extends Component {
+
+  render () {
+    return (
+      <span className="readme-container">
+        <span title="Has README.md" className="icon ion-md-book mr-1"/>
+        <style jsx>{`
+          .readme-container {
+            display: inline-block;
+            white-space: nowrap;
+          }
+        `}</style>
+      </span>
+    )
+  }
+}

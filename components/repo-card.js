@@ -8,7 +8,7 @@ import queries from '../lib/data-query-entries'
 import renderIf from '../lib/render-if'
 
 import RepoTitle from './repo-card-title'
-import { Issues, Language, PullRequests } from './github-components'
+import { Issues, Language, PullRequests, ReadmeBadge } from './github-components'
 
 export class RepoCards extends Component {
 
@@ -21,6 +21,7 @@ export class RepoCards extends Component {
       <CardColumns>
         {this.props.repos.map(repo =>
           <RepoCard key={repo.data.full_name}
+                    readme={repo.readme}
                     {...repo.data}/>
         )}
       </CardColumns>
@@ -56,6 +57,7 @@ export class RepoCard extends Component {
               {renderIf(this.props.language, () => <Language {...this.props} />)}
               <Issues {...this.props} />
               <PullRequests {...this.props} />
+              {renderIf(this.props.readme, () => <ReadmeBadge/>)}
             </CardText>
 
             <CardText>
