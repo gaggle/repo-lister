@@ -12,6 +12,7 @@ export default class extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
+    title: PropTypes.string,
   }
 
   render () {
