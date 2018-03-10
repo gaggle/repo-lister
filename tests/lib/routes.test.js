@@ -1,11 +1,10 @@
 import routes from '../../lib/routes'
 
-const getRoutes = () => routes([
-  {
-    full_name: 'user/name',
-    id: 'id',
+const getRoutes = () => routes({
+  'user/name': {
+    data: {full_name: 'user/name', id: 'id'},
   }
-])
+})
 
 describe('routes', () => {
   it('specifies root page', () => {
