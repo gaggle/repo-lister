@@ -4,53 +4,6 @@ import { storiesOf } from '@storybook/react'
 import { Issues, Language, PullRequests } from '../components/github-components'
 
 storiesOf('GitHub components', module)
-  .addWithChapters('Language', {
-    chapters: [{
-      sections: [
-        {
-          title: 'Languages',
-          sectionFn: () =>
-            <div>
-              <Language language="Shell"/>
-              <Language language="Python"/>
-            </div>
-        },
-        {
-          title: 'Unknown language',
-          sectionFn: () => <Language language="Foo"/>
-        },
-        {
-          title: 'Narrow',
-          sectionFn: () =>
-            <div className="root">
-              <div>
-                <Language language="Python"/>
-                <Language language="Python"/>
-              </div>
-              <div className="medium">
-                <Language language="JavaScript"/>
-                <Language language="JavaScript"/>
-              </div>
-              <div className="narrow">
-                <Language language="Ruby"/>
-                <Language language="Ruby"/>
-              </div>
-              <style jsx>{`
-                .root :global(> *) {
-                  background-color:pink;
-                }
-                .medium {
-                  width: 150px;
-                }
-                .narrow {
-                  width: 35px;
-                }
-              `}</style>
-            </div>
-        },
-      ]
-    }]
-  })
   .addWithChapters('Issues', {
     chapters: [{
       sections: [
@@ -101,6 +54,53 @@ storiesOf('GitHub components', module)
                 }
                 .narrow {
                   width: 20px;
+                }
+              `}</style>
+            </div>
+        },
+      ]
+    }]
+  })
+  .addWithChapters('Language', {
+    chapters: [{
+      sections: [
+        {
+          title: 'Languages',
+          sectionFn: () =>
+            <div>
+              <Language language="Shell"/>
+              <Language language="Python"/>
+            </div>
+        },
+        {
+          title: 'Unknown language',
+          sectionFn: () => <Language language="Foo"/>
+        },
+        {
+          title: 'Narrow',
+          sectionFn: () =>
+            <div className="root">
+              <div>
+                <Language language="Python"/>
+                <Language language="Python"/>
+              </div>
+              <div className="medium">
+                <Language language="JavaScript"/>
+                <Language language="JavaScript"/>
+              </div>
+              <div className="narrow">
+                <Language language="Ruby"/>
+                <Language language="Ruby"/>
+              </div>
+              <style jsx>{`
+                .root :global(> *) {
+                  background-color:pink;
+                }
+                .medium {
+                  width: 150px;
+                }
+                .narrow {
+                  width: 35px;
                 }
               `}</style>
             </div>
