@@ -1,6 +1,6 @@
 import routes from '../../lib/routes'
 
-const get_routes = () => routes([
+const getRoutes = () => routes([
   {
     full_name: 'user/name',
     id: 'id',
@@ -9,13 +9,13 @@ const get_routes = () => routes([
 
 describe('routes', () => {
   it('specifies root page', () => {
-    expect(get_routes()).toEqual(expect.objectContaining({
+    expect(getRoutes()).toEqual(expect.objectContaining({
       '/': {page: '/'}
     }))
   })
 
   it('puts data-elements into expected page', () => {
-    expect(get_routes()).toEqual(expect.objectContaining({
+    expect(getRoutes()).toEqual(expect.objectContaining({
       '/repo/user/name': {
         page: '/repo', query: {
           full_name: 'user/name',
