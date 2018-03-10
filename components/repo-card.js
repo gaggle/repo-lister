@@ -52,9 +52,7 @@ export class RepoCard extends Component {
             <CardText>{this.props.description}</CardText>
 
             <CardText className="gh-stats">
-              {renderIf(this.props.language, () =>
-                <Language {...this.props} />
-              )}
+              {renderIf(this.props.language, () => <Language {...this.props} />)}
               <Issues {...this.props} />
               <PullRequests {...this.props} />
             </CardText>
