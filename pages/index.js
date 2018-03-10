@@ -9,7 +9,7 @@ import fileData from '../data.json'
 export default class extends Component {
   static async getInitialProps () {
     return {
-      repos: fileData
+      repos: Object.values(fileData)
     }
   }
 
