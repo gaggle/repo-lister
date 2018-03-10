@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
-import lorem from 'lorem-ipsum'
 
 import Layout from '../components/layout'
 import { RepoCards } from '../components/repo-card'
@@ -10,7 +9,6 @@ import fileData from '../data.json'
 export default class extends Component {
   static async getInitialProps () {
     return {
-      content: lorem({count: 10}),
       repos: fileData
     }
   }
