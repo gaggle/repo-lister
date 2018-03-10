@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Issues, Language, PullRequests } from '../components/github-components'
+import { Issues, Language, PullRequests, ReadmeBadge } from '../components/github-components'
 
 storiesOf('GitHub components', module)
   .addWithChapters('Issues', {
@@ -173,6 +173,16 @@ storiesOf('GitHub components', module)
       ]
     }]
   })
+  .addWithChapters('Readme badge', {
+    chapters: [{
+      sections: [
+        {
+          title: 'Bare',
+          sectionFn: () => <ReadmeBadge/>
+        },
+      ]
+    }]
+  })
   .addWithChapters('Multiple', {
     chapters: [{
       sections: [{
@@ -182,6 +192,7 @@ storiesOf('GitHub components', module)
             <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
             <PullRequests open_issues_count="1"
                           html_url="https://github.com/foo/bar"/>
+            <ReadmeBadge/>
             <style jsx>{`
               .multiple :global(> *) {
                 margin: 4px;
