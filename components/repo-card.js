@@ -13,14 +13,15 @@ import { Issues, Language, PullRequests } from './github-components'
 export class RepoCards extends Component {
 
   static propTypes = {
-    children: PropTypes.array.isRequired,
+    repos: PropTypes.array.isRequired,
   }
 
   render () {
     return (
       <CardColumns>
-        {this.props.children.map(child =>
-          <RepoCard key={child.id} {...child}/>
+        {this.props.repos.map(repo =>
+          <RepoCard key={repo.data.full_name}
+                    {...repo.data}/>
         )}
       </CardColumns>
     )
