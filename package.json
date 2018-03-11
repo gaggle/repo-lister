@@ -54,7 +54,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
     "jest": "^22.0.5",
-    "lorem-ipsum": "^1.0.4",
     "mockdate": "^2.0.2",
     "react-test-renderer": "^16.2.0"
   },
