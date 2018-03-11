@@ -8,6 +8,12 @@ const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
 const DO_FETCH = false
+const GH_TOKEN = process.env.GH_TOKEN
+
+if (!GH_TOKEN) {
+  console.error('GH_TOKEN not defined')
+  process.exit(1)
+}
 
 process.on('unhandledRejection', err => {
   console.trace('Unhandled Rejection', err)
@@ -58,7 +64,7 @@ async function getReposInfo (forceFetch = false) {
     const req = fetch('https://api.github.com/user/repos?per_page=100', {
       headers: {
         Accept: 'application/vnd.github.v3+json',
-        Authorization: 'Bearer d8db8ca0eba0a98bd10962ef06ae0aefe6f47756'
+        Authorization: `Bearer ${GH_TOKEN}`
       }
     })
     return writeJsonResponseToDisk(req, p)
@@ -80,7 +86,7 @@ async function getReadme (fullName, forceFetch = false) {
         method: 'GET',
         headers: {
           Accept: 'application/vnd.github.v3.html',
-          Authorization: 'Token d8db8ca0eba0a98bd10962ef06ae0aefe6f47756'
+          Authorization: `Token ${GH_TOKEN}`
         }
       }
     )
