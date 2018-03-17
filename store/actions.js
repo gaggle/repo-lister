@@ -32,13 +32,8 @@ export const startDataPoll = isServer => async dispatch => {
 
 async function fetchDataJson (dispatch) {
   dispatch({type: actionTypes.FETCHING})
-  let url = 'http://localhost:3000/data.json'
-
-  const number = Math.random()
-  if (number < 0.2) {
-  }
+  const url = 'http://localhost:3000/data.json'
   const res = await fetch(url)
-
   if (res.ok) {
     const data = await res.json()
     dispatch({type: actionTypes.FETCHED, status: res.status, response: res, data: data})
