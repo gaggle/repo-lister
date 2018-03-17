@@ -10,6 +10,9 @@ export const reducer = (state, action) => {
         initialized: true,
         requestHistory: state.requestHistory.concat([new ResponseEntry(action.response)])
       }
+      if (newState.requestHistory.length > 50) {
+        newState.requestHistory = newState.requestHistory.slice(1, newState.requestHistory.length)
+      }
       if (action.data) newState.data = action.data
       return Object.assign({}, state, newState)
     default:

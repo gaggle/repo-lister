@@ -34,8 +34,9 @@ export class IndexPage extends Component {
   }
 }
 
-const mapStateToProps = ({initialized}) => ({
+const mapStateToProps = ({initialized, requestHistory}) => ({
   hasInitialized: initialized,
+  requestHistory,
 })
 
 const mapDispatchToProps = (dispatch) => ({
