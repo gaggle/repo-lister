@@ -1,32 +1,26 @@
 import GithubColors from 'github-colors'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import urljoin from 'url-join'
 import { capitalize } from 'lodash'
 
 import OptionalLink from './optional-link'
 
 export class Issues extends Component {
 
-  static defaultProps = {
-    html_url: undefined,
-    open_issues_count: undefined,
-  }
-
-  constructor (props) {
-    super(props)
-    this.url = props.html_url ? urljoin(this.props.html_url, 'issues') : null
+  static propTypes = {
+    count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    url: PropTypes.string,
   }
 
   render () {
     return (
-      <span className="issues-container">
-        <OptionalLink href={this.url}><a>
+      <span className="issues-badge">
+        <OptionalLink href={this.props.url}><a>
           <span className="icon ion-md-information-circle mr-1"/>
-          {this.props.open_issues_count}
+          {this.props.count}
         </a></OptionalLink>
         <style jsx>{`
-          .issues-container {
+          .issues-badge {
             display: inline-block;
             white-space: nowrap;
           }
@@ -73,25 +67,20 @@ export class Language extends Component {
 
 export class PullRequests extends Component {
 
-  static defaultProps = {
-    html_url: undefined,
-    open_issues_count: undefined,
-  }
-
-  constructor (props) {
-    super(props)
-    this.url = props.html_url ? urljoin(this.props.html_url, 'pulls') : null
+  static propTypes = {
+    count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    url: PropTypes.string,
   }
 
   render () {
     return (
-      <span className="pr-container">
-        <OptionalLink href={this.url}><a>
+      <span className="pr-badge">
+        <OptionalLink href={this.props.url}><a>
           <span className="icon ion-md-git-pull-request mr-1"/>
-          {this.props.open_issues_count}
+          {this.props.count}
         </a></OptionalLink>
         <style jsx>{`
-          .pr-container {
+          .pr-badge {
             display: inline-block;
             white-space: nowrap;
           }
