@@ -15,6 +15,7 @@ app.prepare()
   .then(() => {
     const server = express()
 
+    server.use('/data.json', express.static('./data.json'))
     server.use('/fonts', express.static('./node_modules/ionicons/dist/fonts'))
 
     server.get('*', (req, res) => {

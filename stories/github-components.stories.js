@@ -10,41 +10,44 @@ storiesOf('GitHub components', module)
       sections: [
         {
           title: 'Bare',
-          sectionFn: () => <Issues/>
+          sectionFn: () =>
+            <Issues/>
         },
         {
           title: 'Count and URL',
-          sectionFn: () => <Issues open_issues_count='1'
-                                   html_url={'https://github.com/foo/bar'}/>
-        },
-        {
-          title: 'Trailing URL slash',
-          sectionFn: () => <Issues open_issues_count='1'
-                                   html_url={'https://github.com/foo/bar'}/>
+          sectionFn: () =>
+            <Issues count='1' url={'https://github.com/foo/bar/issues'}/>
         },
         {
           title: 'Only count',
-          sectionFn: () => <Issues open_issues_count='1'/>
+          sectionFn: () =>
+            <Issues count='1'/>
+        },
+        {
+          title: 'Only count as number',
+          sectionFn: () =>
+            <Issues count={1}/>
         },
         {
           title: 'Only URL',
-          sectionFn: () => <Issues html_url={'https://github.com/foo/bar'}/>
+          sectionFn: () =>
+            <Issues url={'https://github.com/foo/bar/issues'}/>
         },
         {
           title: 'Narrow',
           sectionFn: () =>
             <div className="root">
               <div>
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
               </div>
               <div className="medium">
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
               </div>
               <div className="narrow">
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
-                <Issues open_issues_count='1' html_url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
+                <Issues count='1' url={'https://foo'}/>
               </div>
               <style jsx>{`
                 .root :global(> *) {
@@ -114,49 +117,45 @@ storiesOf('GitHub components', module)
       sections: [
         {
           title: 'Bare',
-          sectionFn: () => <PullRequests/>
+          sectionFn: () =>
+            <PullRequests/>
         },
         {
           title: 'Count and URL',
           sectionFn: () =>
-            <PullRequests
-              open_issues_count='1'
-              html_url={'https://github.com/foo/bar'}
-            />
-        },
-        {
-          title: 'Trailing URL slash',
-          sectionFn: () =>
-            <PullRequests
-              open_issues_count='1'
-              html_url={'https://github.com/foo/bar/'}
-            />
+            <PullRequests count='1' url={'https://github.com/foo/bar/pulls'}/>
         },
         {
           title: 'Only count',
-          sectionFn: () => <PullRequests open_issues_count='1'/>
+          sectionFn: () =>
+            <PullRequests count='1'/>
+        },
+        {
+          title: 'Only count as number',
+          sectionFn: () =>
+            <PullRequests count={1}/>
         },
         {
           title: 'Only URL',
-          sectionFn: () => <PullRequests
-            html_url={'https://github.com/foo/bar/'}
-          />
+          sectionFn: () =>
+            <PullRequests url={'https://github.com/foo/bar/pulls'}
+            />
         },
         {
           title: 'Narrow',
           sectionFn: () =>
             <div className="root">
               <div>
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
               </div>
               <div className="medium">
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
               </div>
               <div className="narrow">
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
-                <PullRequests open_issues_count='1' html_url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
+                <PullRequests count='1' url={'https://foo'}/>
               </div>
               <style jsx>{`
                 .root :global(> *) {
@@ -186,20 +185,22 @@ storiesOf('GitHub components', module)
   })
   .addWithChapters('Multiple', {
     chapters: [{
-      sections: [{
-        sectionFn: () =>
-          <div className="multiple">
-            <Language language='Python'/>
-            <Issues open_issues_count='1' html_url={'https://github.com/foo/bar'}/>
-            <PullRequests open_issues_count="1"
-                          html_url="https://github.com/foo/bar"/>
-            <ReadmeBadge/>
-            <style jsx>{`
+      sections: [
+        {
+          sectionFn: () =>
+            <div className="multiple">
+              <Language language='Python'/>
+              <Issues count='1' url={'https://github.com/foo/bar'}/>
+              <PullRequests count="1"
+                            url="https://github.com/foo/bar"/>
+              <ReadmeBadge/>
+              <style jsx>{`
               .multiple :global(> *) {
                 margin: 4px;
               }
             `}</style>
-          </div>
-      }]
+            </div>
+        },
+      ]
     }]
   })

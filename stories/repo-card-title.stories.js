@@ -2,18 +2,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import RepoCardTitle from '../components/repo-card-title'
-
-const data = {
-  'html_url': 'https://github.com/gaggle/adr-tools',
-  'name': 'adr-tools',
-  'owner': {
-    'html_url': 'https://github.com/gaggle',
-    'login': 'gaggle',
-  },
-}
+import RepoTitle from '../components/repo-card-title'
 
 storiesOf('Repo Card Title', module)
   .add('Simple', () =>
-    <RepoCardTitle {...data}></RepoCardTitle>
+    <RepoTitle owner="gaggle"
+               owner_url="https://github.com/gaggle"
+               repo="adr-tools"
+               repo_url="https://github.com/gaggle/adr-tools"/>
   )

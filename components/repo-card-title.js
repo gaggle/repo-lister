@@ -1,32 +1,27 @@
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+
+import OptionalLink from './optional-link'
 
 export default class extends Component {
 
   static propTypes = {
-    html_url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    owner: PropTypes.shape({
-      html_url: PropTypes.string.isRequired,
-      login: PropTypes.string.isRequired,
-    }),
-  }
-
-  static defaultProps = {
-    owner: {},
+    owner: PropTypes.string.isRequired,
+    owner_url: PropTypes.string,
+    repo: PropTypes.string.isRequired,
+    repo_url: PropTypes.string,
   }
 
   render () {
     return (
       <div>
-        <Link href={this.props.owner.html_url}>
-          <a>{this.props.owner.login}</a>
-        </Link>
+        <OptionalLink href={this.props.owner_url}>
+          <a>{this.props.owner}</a>
+        </OptionalLink>
         {' / '}
-        <Link href={this.props.html_url}>
-          <a>{this.props.name}</a>
-        </Link>
+        <OptionalLink href={this.props.repo_url}>
+          <a>{this.props.repo}</a>
+        </OptionalLink>
       </div>
     )
   }
