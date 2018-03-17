@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class Clicker extends Component {
 
   static propTypes = {
-    count: PropTypes.number
+    count: PropTypes.number,
   }
 
   static defaultProps = {

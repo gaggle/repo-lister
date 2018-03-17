@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { Component, Fragment } from 'react'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
 
-import Timestamp from './timestamp'
-
 import Styles from '../css/index.scss'
+
+import Timestamp from './timestamp'
 
 export default class extends Component {
 

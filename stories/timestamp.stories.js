@@ -1,8 +1,9 @@
 'use strict'
 import React from 'react'
-import Timestamp from '../components/timestamp'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
+
+import Timestamp from '../components/timestamp'
 
 storiesOf('Timestamp', module)
   .addWithChapters('Simple', {

@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+
 import { Issues, Language, PullRequests, ReadmeBadge } from '../components/github-components'
 
 storiesOf('GitHub components', module)
