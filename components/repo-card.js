@@ -42,10 +42,10 @@ export class RepoCard extends Component {
               {renderIf(this.props.language, () =>
                 <Language language={this.props.language}/>
               )}
-              {renderIf(this.props.issues, () =>
+              {renderIf(this.props.issues !== undefined, () =>
                 <Issues count={this.props.issues} url={this.props.issues_url}/>
               )}
-              {renderIf(this.props.pullrequests, () =>
+              {renderIf(this.props.pullrequests !== undefined, () =>
                 <PullRequests count={this.props.pullrequests} url={this.props.pullrequests_url}/>
               )}
               {renderIf(this.props.hasReadme, () => <ReadmeBadge/>)}
