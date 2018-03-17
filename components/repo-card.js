@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Card, CardBody, CardText, CardTitle } from 'reactstrap'
+import { connect } from 'react-redux'
 
 import renderIf from '../lib/render-if'
 
@@ -67,3 +68,21 @@ export class RepoCard extends Component {
     )
   }
 }
+
+const mapStateToProps = ({data}, {id}) => {
+  const repo = data.repos[id]
+  return {
+    description: repo.description,
+    hasReadme: !!repo.readme,
+    issues: repo.open_issues,
+    issues_url: repo.open_issues_html_url,
+    language: repo.language,
+    owner_name: repo.owner_name,
+    owner_url: repo.owner_html_url,
+    pullrequests: repo.open_pullrequests,
+    pullrequests_url: repo.open_pullrequests_html_url,
+    repo_name: repo.repo_name,
+    repo_url: repo.repo_html_url,
+  }
+}
+export default connect(mapStateToProps, null)(RepoCard)
