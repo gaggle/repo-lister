@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 const fetch = require('isomorphic-unfetch')
 const fs = require('fs')
+const urljoin = require('url-join')
 const {promisify} = require('util')
+const stringify = require('json-stable-stringify')
 
 const open = promisify(fs.open)
 const readFile = promisify(fs.readFile)
@@ -40,7 +42,12 @@ function sanitize (s) {
 }
 
 async function writeToDisk (data, path) {
-  return writeFile(path, JSON.stringify(data, null, 2))
+  return writeFile(path, stringify(data, {
+    space: '  ',
+    cmp: (a, b) =>
+      // case-insensitive compare
+      a.key.toLowerCase() < b.key.toLowerCase() ? -1 : 1
+  }))
 }
 
 async function writeJsonResponseToDisk (req, path, defaultText = '') {
@@ -102,23 +109,31 @@ async function getReadme (fullName, forceFetch = false) {
 
 getReposInfo(DO_FETCH)
   .then(reposInfo => {
-    const data = {}
+    const data = {repos: {}}
     for (let el of reposInfo) {
-      data[el.full_name] = {data: el}
+      data.repos[el.full_name] = {
+        'description': el.description,
+        'full_name': el.full_name,
+        'id': el.full_name,
+        'language': el.language,
+        'open_issues': el.open_issues_count,
+        'open_issues_html_url': urljoin(el.html_url, 'issues'),
+        'open_pullrequests': el.open_issues_count,
+        'open_pullrequests_html_url': urljoin(el.html_url, 'pulls'),
+        'owner_html_url': el.owner.html_url,
+        'owner_name': el.owner.login,
+        'repo_html_url': el.html_url,
+        'repo_name': el.name
+      }
     }
     return data
   })
   .then(data => {
-    return Promise.all(Object.entries(data).map(el => {
-      [key, value] = el
+    return Promise.all(Object.keys(data.repos).map(key => {
       return getReadme(key, DO_FETCH)
-        .then(content => {
-          [key, value] = el
-          data[key].readme = content
-        })
+        .then(content => {data.repos[key].readme = content})
     }))
-      .then(() => data
-      )
+      .then(() => data)
   })
   .then(data => writeToDisk(data, 'data.json'))
   .then(() => console.log('Done'))
