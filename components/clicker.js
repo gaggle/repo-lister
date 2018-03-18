@@ -43,14 +43,14 @@ class Clicker extends Component {
           <div className="mx-auto display-1">{this.state.count}</div>
         </div>
         <div className="clicker-button-panel d-flex flex-row">
-          <button className="btn btn-success w-100"
+          <button className="incr btn btn-success w-100"
                   onClick={this.incrementCount}>
             <i className="fa fa-plus fa-2x">incr</i>
           </button>
-          <button className="btn btn-warning w-100" onClick={this.resetCount}>
+          <button className="reset btn btn-warning w-100" onClick={this.resetCount}>
             <i className="fa fa-refresh fa-2x">reset</i>
           </button>
-          <button className="btn btn-danger w-100"
+          <button className="decr btn btn-danger w-100"
                   onClick={this.decrementCount}>
             <i className="fa fa-minus fa-2x">decr</i>
           </button>
