@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import renderIf, { renderIfElse } from '../lib/render-if'
 import RepoTitle from '../components/repo-card-title'
 import { initStore } from '../store/index'
-import { startDataPoll } from '../store/actions'
+import { guardedStartDataPoll } from '../store/actions'
 
 export class RepoPage extends Component {
 
@@ -57,7 +57,7 @@ const mapStateToProps = ({data, fetching, initialized}, {isServer, query}) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startDataPoll: bindActionCreators(startDataPoll, dispatch)
+  startDataPoll: bindActionCreators(guardedStartDataPoll, dispatch)
 })
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(RepoPage)

@@ -9,14 +9,15 @@ export const actionTypes = {
   FETCHING: 'FETCHING',
 }
 
-export const initStore = (initialState = exampleInitialState) => {
-  return createStore(reducer, initialState,
+export const initStore = (state = initialState) => {
+  return createStore(reducer, state,
     composeWithDevTools(applyMiddleware(thunkMiddleware))
   )
 }
 
-const exampleInitialState = {
+export const initialState = {
   data: {repos: {}},
+  dataUrl: process.env.DATA_URL || 'http://localhost:3000/data.json',
   fetching: undefined,
   initialized: false,
   lastUpdate: 0,

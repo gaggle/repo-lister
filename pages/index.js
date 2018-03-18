@@ -7,7 +7,7 @@ import Layout from '../components/layout'
 import RepoCards from '../components/repo-cards'
 import { initStore } from '../store/index'
 import { renderIfElse } from '../lib/render-if'
-import { startDataPoll } from '../store/actions'
+import { guardedStartDataPoll } from '../store/actions'
 
 export class IndexPage extends Component {
 
@@ -40,7 +40,7 @@ const mapStateToProps = ({initialized, requestHistory}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  startDataPoll: bindActionCreators(startDataPoll, dispatch)
+  startDataPoll: bindActionCreators(guardedStartDataPoll, dispatch)
 })
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(IndexPage)

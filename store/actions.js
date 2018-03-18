@@ -1,14 +1,16 @@
-import fetch from 'isomorphic-unfetch'
+import 'isomorphic-unfetch'
 
 import { actionTypes } from './index'
 
-export const startDataPoll = isServer => async dispatch => {
-  if (!isServer) return
+export const guardedStartDataPoll = isServer => isServer ? startDataPoll() : async () => {}
 
+export const startDataPoll = () => async (dispatch, getState) => {
   console.log('Starting data polling')
 
+  const state = await getState()
+
   try {
-    await fetchDataJson(dispatch)
+    await fetchDataJson(dispatch, state.dataUrl)
   } catch (err) {
     if (!(err instanceof FetchError)) throw err
   }
@@ -21,7 +23,7 @@ export const startDataPoll = isServer => async dispatch => {
 
     fetching = true
     try {
-      await fetchDataJson(dispatch)
+      await fetchDataJson(dispatch, state.dataUrl)
     } catch (err) {
       if (!(err instanceof FetchError)) throw err
     } finally {
@@ -30,15 +32,14 @@ export const startDataPoll = isServer => async dispatch => {
   }, 2000)
 }
 
-async function fetchDataJson (dispatch) {
+async function fetchDataJson (dispatch, url) {
   dispatch({type: actionTypes.FETCHING})
-  const url = 'http://localhost:3000/data.json'
   const res = await fetch(url)
   if (res.ok) {
     const data = await res.json()
-    dispatch({type: actionTypes.FETCHED, status: res.status, response: res, data: data})
+    dispatch({type: actionTypes.FETCHED, response: res, data: data})
   } else {
-    dispatch({type: actionTypes.FETCHED, status: res.status, response: res})
+    dispatch({type: actionTypes.FETCHED, response: res})
     throw new FetchError(res.statusText)
   }
 }

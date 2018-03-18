@@ -59,9 +59,11 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
+    "fetch-mock": "^6.3.0",
     "jest": "^22.0.5",
     "mockdate": "^2.0.2",
-    "react-test-renderer": "^16.2.0"
+    "react-test-renderer": "^16.2.0",
+    "redux-mock-store": "^1.5.1"
   },
   "babel": {
     "plugins": [
