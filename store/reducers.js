@@ -4,14 +4,19 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.FETCHING:
       return Object.assign({}, state, {fetching: true})
+
     case actionTypes.FETCHED:
+      let newRequestHistory = state.requestHistory.concat(
+        [new ResponseEntry(action.response || {})]
+      )
+      if (newRequestHistory.length > 50) {
+        newRequestHistory = newRequestHistory
+          .slice(1, newRequestHistory.length)
+      }
       const newState = {
         fetching: false,
         initialized: true,
-        requestHistory: state.requestHistory.concat([new ResponseEntry(action.response)])
-      }
-      if (newState.requestHistory.length > 50) {
-        newState.requestHistory = newState.requestHistory.slice(1, newState.requestHistory.length)
+        requestHistory: newRequestHistory,
       }
       if (action.data) newState.data = action.data
       return Object.assign({}, state, newState)
