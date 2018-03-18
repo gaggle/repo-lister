@@ -20,6 +20,7 @@ export const reducer = (state, action) => {
       }
       if (action.data) newState.data = action.data
       return Object.assign({}, state, newState)
+
     default:
       return state
   }
