@@ -37,7 +37,7 @@ async function fetchDataJson (dispatch, url) {
   const res = await fetch(url)
   if (res.ok) {
     const data = await res.json()
-    dispatch({type: actionTypes.FETCHED, response: res, data: data})
+    dispatch({type: actionTypes.FETCHED, response: res, data})
   } else {
     dispatch({type: actionTypes.FETCHED, response: res})
     throw new FetchError(res.statusText)

@@ -21,11 +21,7 @@ describe('startDataPoll', () => {
     fetchMock.restore()
   })
 
-  it('bar', () => {
-    startDataPoll(true)
-  })
-
-  it('dispatches FETCHING then FETCHED events', async () => {
+  it('dispatches type of events in specified order', async () => {
     fetchMock.get(initialState.dataUrl, {body: getFakeData()})
 
     await store.dispatch(startDataPoll())
@@ -34,24 +30,27 @@ describe('startDataPoll', () => {
     expect(actions)
       .toMatchObject([
         {type: actionTypes.FETCHING},
-        {type: actionTypes.FETCHED}
+        {type: actionTypes.FETCHED},
       ])
   })
 
-  it('dispatches FETCHED event with data', async () => {
-    fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+  describe('dispatches FETCHED event', () => {
+    it('with data', async () => {
+      fetchMock.get(initialState.dataUrl, {body: getFakeData()})
 
-    await store.dispatch(startDataPoll())
+      await store.dispatch(startDataPoll())
 
-    const actions = store.getActions()
-    expect(actions[1]).toMatchObject({data: getFakeData()})
-  })
-  it('dispatches FETCHED event with response', async () => {
-    fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+      const actions = store.getActions()
+      expect(actions[1]).toMatchObject({data: getFakeData()})
+    })
 
-    await store.dispatch(startDataPoll())
+    it('with response', async () => {
+      fetchMock.get(initialState.dataUrl, {body: getFakeData()})
 
-    const actions = store.getActions()
-    expect(actions[1]).toMatchObject({response: {}})
+      await store.dispatch(startDataPoll())
+
+      const actions = store.getActions()
+      expect(actions[1]).toMatchObject({response: {}})
+    })
   })
 })
