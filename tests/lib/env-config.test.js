@@ -6,10 +6,4 @@ describe('env config', () => {
       'process.env.BUILD_DATE': '946684800000'
     })
   })
-
-  it('defaults to no DATA_URL', () => {
-    expect(envConfig).toMatchObject({
-      'process.env.DATA_URL': undefined
-    })
-  })
 })
