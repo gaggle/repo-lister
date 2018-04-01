@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "clean": "rm -rf .next/ coverage/ out/ node_modules/.cache",
-    "deploy": "npm run export && ./scripts/deploy",
-    "deploy:ci": "./scripts/ci-deploy",
-    "export": "next build && ./scripts/export",
+    "clean": "rm -rf coverage/ node_modules/.cache/ tmp/",
     "start": "next build && ./scripts/serve",
-    "stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
-    "test": "jest --no-cache && npm run export",
-    "test:update": "jest -u --no-cache"
+    "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
+    "test": "jest --no-cache --silent && npm run test:export",
+    "test:export": "node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/.next",
+    "test:scrape": "repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/.cache/",
+    "test:update": "jest -u --no-cache --silent"
   },
   "repository": {
     "type": "git",
@@ -63,7 +62,8 @@
     "jest": "^22.0.5",
     "mockdate": "^2.0.2",
     "react-test-renderer": "^16.2.0",
-    "redux-mock-store": "^1.5.1"
+    "redux-mock-store": "^1.5.1",
+    "repo-scraper": "git+https://github.com/gaggle/repo-scraper.git"
   },
   "babel": {
     "plugins": [
@@ -105,7 +105,7 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/coverage/",
       "<rootDir>/node_modules/",
-      "<rootDir>/out/",
+      "<rootDir>/tmp/",
       "<rootDir>/stories/"
     ],
     "setupFiles": [

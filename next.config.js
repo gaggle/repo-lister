@@ -2,6 +2,7 @@
 const getRoutes = require('./lib/routes')
 
 module.exports = {
+  distDir: process.env.DIST_DIR || '.next',
   exportPathMap: getRoutes,
   webpack: (config, {dev}) => {
 
