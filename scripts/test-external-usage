@@ -1,0 +1,20 @@
+#!/bin/bash -euv
+
+ORIG_CWD=$PWD
+TMP="/tmp/repo-lister-external-usage/"
+
+rm -rf ${TMP}/node_modules/repo-lister ${TMP}/node_modules/bin/repo-web ${TMP}/cache ${TMP}/out
+mkdir -p ${TMP}/node_modules
+cd ${TMP}
+
+rm -f *.tgz
+npm pack ${ORIG_CWD}
+FILENAME=`ls *.tgz`
+
+if [ ! -f package.json ]; then
+    npm init --force
+fi
+
+npm install ${FILENAME}
+
+PATH=$(npm bin):$PATH repo-web -d=data.json -s=static/ -o=out/ -c=cache/ --production

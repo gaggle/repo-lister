@@ -2,13 +2,17 @@
   "name": "repo-lister",
   "version": "0.0.0",
   "description": "",
+  "bin": {
+    "repo-web": "bin/cli.js"
+  },
   "scripts": {
     "clean": "rm -rf coverage/ node_modules/.cache/ tmp/",
     "start": "next build && ./scripts/serve",
     "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
-    "test": "jest --no-cache --silent && npm run test:export",
-    "test:export": "node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/.next",
-    "test:scrape": "repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/.cache/",
+    "test": "jest --no-cache --silent && npm run test:export && npm run test:external",
+    "test:export": "node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/webcache",
+    "test:external": "./scripts/test-external-usage",
+    "test:scrape": "repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/scrapecache/",
     "test:update": "jest -u --no-cache --silent"
   },
   "repository": {
