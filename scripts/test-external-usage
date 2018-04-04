@@ -17,4 +17,5 @@ fi
 
 npm install ${FILENAME}
 
+echo ${TMP}
 PATH=$(npm bin):$PATH repo-web -d=data.json -s=static/ -o=out/ -c=cache/ --production
