@@ -9,7 +9,7 @@
     "clean": "rm -rf coverage/ node_modules/.cache/ tmp/",
     "start": "next build && ./scripts/serve",
     "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
-    "test": "npm run test:jest && npm run test:export && npm run test:external",
+    "test": "npm run test:jest && npm run test:export && npm run test:external && npm run test:deps",
     "test:deps": "depcheck --ignores $(cat depcheck_ignores.txt | xargs | sed -e 's/ /,/g')",
     "test:export": "node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/webcache",
     "test:external": "./scripts/test-external-usage",
