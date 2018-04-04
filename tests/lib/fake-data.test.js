@@ -3,7 +3,7 @@ const path = require('path')
 
 const getFakeData = require('../../lib/fake-data')
 const getRealData = () => JSON.parse(
-  fs.readFileSync(path.join(__dirname, '..', '..', 'data.json')).toString()
+  fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'sample-data', 'data.json')).toString()
 )
 
 describe('Fake data', () => {
