@@ -10,6 +10,7 @@
     "start": "next build && ./scripts/serve",
     "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
     "test": "jest --no-cache --silent && npm run test:export && npm run test:external",
+    "test:deps": "depcheck --ignores $(cat depcheck_ignores.txt | xargs | sed -e 's/ /,/g')",
     "test:export": "node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/webcache",
     "test:external": "./scripts/test-external-usage",
     "test:scrape": "repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/scrapecache/",
@@ -62,6 +63,7 @@
     "yargs": "^11.0.0"
   },
   "devDependencies": {
+    "depcheck": "^0.6.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
