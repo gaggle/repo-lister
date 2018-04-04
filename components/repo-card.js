@@ -12,6 +12,7 @@ import { Issues, Language, PullRequests, ReadmeBadge } from './github-components
 export class RepoCard extends Component {
 
   static propTypes = {
+    badges: PropTypes.array,
     description: PropTypes.string,
     has_readme: PropTypes.bool,
     id: PropTypes.any.isRequired,
@@ -25,7 +26,8 @@ export class RepoCard extends Component {
   }
 
   static defaultProps = {
-    has_readme: false
+    badges: [],
+    has_readme: false,
   }
 
   render () {
