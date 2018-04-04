@@ -30,10 +30,10 @@ export class RepoPage extends Component {
                          repo_url={this.props.repo_url}/></h1>
           <div className="lead">{this.props.description}</div>
           <Link href={'/'}><a>Go back home</a></Link>
-          {renderIf(this.props.readme, () =>
+          {renderIf(this.props.readme_html, () =>
             <div className='readme'>
               <h2>Readme:</h2>
-              <div>{Parser(this.props.readme)}</div>
+              <div>{Parser(this.props.readme_html)}</div>
             </div>)}
         </Layout>
       ,
@@ -50,7 +50,7 @@ const mapStateToProps = ({data, fetching, initialized}, {isServer, query}) => {
     isFetching: fetching,
     owner: repo.owner_name,
     owner_url: repo.owner_html_url,
-    readme: repo.readme,
+    readme_html: repo.readme_html,
     repo: repo.repo_name,
     repo_url: repo.repo_html_url,
   }
