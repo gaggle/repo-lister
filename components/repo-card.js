@@ -50,6 +50,9 @@ export class RepoCard extends Component {
               )}
               {renderIf(this.props.has_readme, () => <ReadmeBadge/>)}
             </CardText>
+            <CardText className="readme-info">
+              {this.props.badges.map(el => <img src={el.src}/>)}
+            </CardText>
             <CardText>
               <Link href={{pathname: '/repo', query: {id: this.props.id}}}
                     as={`/repo/${this.props.id}`}>
@@ -72,6 +75,7 @@ export class RepoCard extends Component {
 const mapStateToProps = ({data}, {id}) => {
   const repo = data.repos[id]
   return {
+    badges: repo.badges,
     description: repo.description,
     has_readme: !!repo.readme_html,
     issues: repo.open_issues,
