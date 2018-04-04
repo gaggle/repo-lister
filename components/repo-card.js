@@ -13,7 +13,7 @@ export class RepoCard extends Component {
 
   static propTypes = {
     description: PropTypes.string,
-    hasReadme: PropTypes.bool,
+    has_readme: PropTypes.bool,
     id: PropTypes.any.isRequired,
     issues: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     language: PropTypes.string,
@@ -25,7 +25,7 @@ export class RepoCard extends Component {
   }
 
   static defaultProps = {
-    hasReadme: false
+    has_readme: false
   }
 
   render () {
@@ -48,7 +48,7 @@ export class RepoCard extends Component {
               {renderIf(this.props.pullrequests !== undefined, () =>
                 <PullRequests count={this.props.pullrequests} url={this.props.pullrequests_url}/>
               )}
-              {renderIf(this.props.hasReadme, () => <ReadmeBadge/>)}
+              {renderIf(this.props.has_readme, () => <ReadmeBadge/>)}
             </CardText>
             <CardText>
               <Link href={{pathname: '/repo', query: {id: this.props.id}}}
@@ -73,7 +73,7 @@ const mapStateToProps = ({data}, {id}) => {
   const repo = data.repos[id]
   return {
     description: repo.description,
-    hasReadme: !!repo.readme,
+    has_readme: !!repo.readme_html,
     issues: repo.open_issues,
     issues_url: repo.open_issues_html_url,
     language: repo.language,

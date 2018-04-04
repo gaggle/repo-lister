@@ -11,7 +11,7 @@ storiesOf('Repo Card', module)
         {
           sectionFn: () =>
             <RepoCard description="baz"
-                      hasReadme
+                      has_readme
                       id="1"
                       issues="1"
                       language="Shell"
