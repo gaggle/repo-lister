@@ -1,5 +1,13 @@
 language: node_js
 node_js:
 - 9
-script:
-- npm test
+cache:
+  directories:
+  - /home/travis/.rvm/
+jobs:
+  include:
+  - stage: test
+    script: npm run test:deps
+  - script: npm run test:export
+  - script: npm run test:external
+  - script: npm run test:jest
