@@ -15,7 +15,10 @@ if [ ! -f package.json ]; then
     npm init --force
 fi
 
-npm install ${FILENAME}
+npm install ${FILENAME} --save
 
-echo ${TMP}
+mkdir out # Files in out folder pre-existing caused a crash once
+touch out/index.html
+
+echo ${PWD}
 PATH=$(npm bin):$PATH repo-web -d=data.json -s=static/ -o=out/ -c=cache/ --production

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const {copy, ensureDir, ensureSymlink} = require('fs-extra')
-const {dirname, join, relative, resolve} = require('path')
+const {copy, ensureDir, ensureSymlink, remove} = require('fs-extra')
 const {exec} = require('child-process-promise')
+const {join, relative, resolve} = require('path')
 
 const defaultOptions = {
   cachefolder: '.cache/',
@@ -95,6 +95,7 @@ ensureDir(argv.cachefolder)
   .then(() => {
     const nextFolder = relative(process.cwd(), join(argv.cachefolder, '.next'))
     return wrappedExec('next build', {DIST_DIR: nextFolder})
+      .then(() => remove(argv.outfolder))
       .then(() => {
         const promises = [
           wrappedExec(`next export -o ${argv.outfolder}`, {DIST_DIR: nextFolder})
