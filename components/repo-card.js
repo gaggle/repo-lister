@@ -54,7 +54,7 @@ export class RepoCard extends Component {
               {renderIf(this.props.has_readme, () => <ReadmeBadge/>)}
             </CardText>
             <CardText className="readme-info">
-              {this.props.badges.map(el => <img src={join('repos', el.src)}/>)}
+              {this.props.badges.map(el => <img key={el.src} src={join('repos', el.src)}/>)}
             </CardText>
             <CardText>
               <Link href={{pathname: '/repos', query: {id: this.props.id}}}
