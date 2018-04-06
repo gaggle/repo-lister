@@ -17,11 +17,9 @@ export const initStore = (state = initialState) => {
 
 export const initialState = {
   data: {repos: {}},
-  dataUrl: process.env.DATA_URL || 'http://localhost:3000/data.json',
+  dataUrl: process.env.DATA_URL || 'http://localhost:3000/repos/data.json',
   fetching: undefined,
   initialized: false,
   lastUpdate: 0,
   requestHistory: [],
 }
-
-

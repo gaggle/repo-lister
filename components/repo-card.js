@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Card, CardBody, CardText, CardTitle } from 'reactstrap'
 import { connect } from 'react-redux'
+import { join } from 'path'
 
 import renderIf from '../lib/render-if'
 
@@ -53,11 +54,11 @@ export class RepoCard extends Component {
               {renderIf(this.props.has_readme, () => <ReadmeBadge/>)}
             </CardText>
             <CardText className="readme-info">
-              {this.props.badges.map(el => <img src={el.src}/>)}
+              {this.props.badges.map(el => <img src={join('repos', el.src)}/>)}
             </CardText>
             <CardText>
-              <Link href={{pathname: '/repo', query: {id: this.props.id}}}
-                    as={`/repo/${this.props.id}`}>
+              <Link href={{pathname: '/repos', query: {id: this.props.id}}}
+                    as={`/repos/${this.props.id}`}>
                 <a>Details</a>
               </Link>
             </CardText>

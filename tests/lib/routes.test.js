@@ -10,7 +10,7 @@ describe('routes', () => {
 
   it('puts data-elements into expected page', () => {
     expect(routes(getFakeData())).toEqual(expect.objectContaining({
-      '/repo/id': {
+      '/repos/id': {
         page: '/repo', query: {
           id: 'id',
         }
