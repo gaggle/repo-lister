@@ -7,6 +7,8 @@ rm -rf ${TMP}/node_modules/repo-lister ${TMP}/node_modules/bin/repo-web ${TMP}/c
 mkdir -p ${TMP}/node_modules
 cd ${TMP}
 
+rsync -a ${ORIG_CWD}/tests/fixtures/sample-data/ scraped/
+
 rm -f *.tgz
 npm pack ${ORIG_CWD}
 FILENAME=`ls *.tgz`
