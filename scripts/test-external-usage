@@ -23,4 +23,4 @@ mkdir out # CLI would crash if folder already existed and had files, so, we expl
 touch out/index.html
 
 echo ${PWD}
-PATH=$(npm bin):$PATH repo-web -d=data.json -s=static/ -o=out/ -c=cache/ --production
+PATH=$(npm bin):$PATH repo-web http://localhost:6000 -s=scraped/ -o=external_out/ --production -vvv

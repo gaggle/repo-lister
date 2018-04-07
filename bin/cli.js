@@ -1,28 +1,30 @@
 #!/usr/bin/env node
-const {copy, ensureDir, ensureSymlink, remove} = require('fs-extra')
-const {exec} = require('child-process-promise')
-const {join, relative, resolve} = require('path')
+const _prettyPath = require('../lib/pretty-path')
+const {configureLog, getLogLevel, log} = require('../lib/log')
+
+const steps = require('./processing-steps')
+
+const prettyPath = (...args) => {
+  return _prettyPath(...args, {alwaysAbsolute: log.getLevel() <= log.levels.DEBUG})
+}
 
 const defaultOptions = {
-  cachefolder: '.cache/',
-  datafile: 'data.json',
+  cachefolder: undefined,
   outfolder: 'out/',
   production: false,
-  staticfolder: 'static/',
+  scrapedfolder: 'scraped/',
 }
 
 const argv = require('yargs')
-  .usage('$0', 'Export static list of repos', yargs => {
-    yargs.option('d', {
-      alias: 'datafile',
-      default: defaultOptions.datafile,
-      describe: 'File to load repo information from',
+  .usage('$0 <base>', 'Generate static site displaying scraped data', yargs => {
+    yargs.positional('base', {
+      describe: `Base URL where site is deployed to, e.g. "http://localhost"`,
       type: 'string'
     })
     yargs.option('s', {
-      alias: 'staticfolder',
-      default: defaultOptions.staticfolder,
-      describe: 'Folder to load as repos\' static files',
+      alias: 'scrapedfolder',
+      default: defaultOptions.scrapedfolder,
+      describe: 'Folder containing scraped repo data',
       type: 'string'
     })
     yargs.option('o', {
@@ -31,82 +33,58 @@ const argv = require('yargs')
       describe: 'Folder to export to',
       type: 'string'
     })
-    yargs.option('c', {
-      alias: 'cachefolder',
-      default: defaultOptions.cachefolder,
-      describe: 'Folder to use for caching',
-      type: 'string'
-    })
     yargs.option('p', {
       alias: 'production',
       default: process.env.NODE_ENV === 'production' || defaultOptions.production,
-      describe: 'Production mode, defaults to $NODE_ENV',
-      type: 'boolean'
+      describe: 'Enable production mode, defaults to $NODE_ENV==production',
+    })
+    yargs.option('v', {
+      alias: 'verbose',
+      count: true,
+      describe: 'Debug level count, corresponding to WARN, INFO, DEBUG, TRACE, SILENT',
+    })
+    yargs.option('c', {
+      alias: 'cachefolder',
+      default: defaultOptions.cachefolder,
+      describe: 'Debug flag to set caching folder, defaults to temp. dir',
+      type: 'string',
     })
   })
   .strict(true)
   .argv
 
-const wrappedExec = (cmd, envs = {}) => {
-  let s = `export PATH=$(npm bin):$PATH`
-  for (let [key, val] of Object.entries(envs)) {
-    s += `; export ${key}=${val}`
-  }
-  s += `; ${cmd}`
-  console.log(`exec: ${s}`)
-  return exec(s)
-    .then(({stdout, stderr}) => {
-      if (stderr) console.error(stderr)
-      console.log(stdout)
-    })
+const onError = err => {
+  log.trace(err)
+  process.exit(1)
 }
 
-ensureDir(argv.cachefolder)
-  .then(() => {
-    argv.datafile = resolve(argv.datafile)
-    argv.staticfolder = resolve(argv.staticfolder)
-    argv.outfolder = resolve(argv.outfolder)
-    argv.cachefolder = resolve(argv.cachefolder)
-  })
-  .then(() => {
-    let outfolder = relative(process.cwd(), argv.outfolder)
-    if (outfolder.indexOf('..') !== -1) outfolder = resolve(outfolder)
+const informUserStart = argv => {
+  if (log.getLevel() !== log.levels.SILENT) {
+    if (argv.verbose !== 0) console.log(`Log level ${getLogLevel()}`)
+    console.log(`Exporting ${argv.production ? 'production' : 'dev'} static site to '${prettyPath(argv.outfolder)}', ` +
+      `with assets from '${prettyPath(argv.scrapedfolder)}'`)
+  }
+  log.debug(`Caching to '${prettyPath(argv.cachefolder)}'`)
+}
 
-    let cachefolder = relative(process.cwd(), argv.cachefolder)
-    if (cachefolder.indexOf('..') !== -1) cachefolder = resolve(cachefolder)
+configureLog(argv.verbose)
+steps.sanitizeArgv(argv)
+  .then(() => informUserStart(argv))
+  .then(() => log.debug('Preparing folders...'))
+  .then(() => steps.createDirs(argv))
+  .then(() => log.debug('Folders prepared'))
 
-    return console.log(
-      `Exporting ${argv.production ? 'production' : 'dev'} static site to '${outfolder}', caching to '${cachefolder}'`
-    )
-  })
-  .then(() => {
-    const buildFolder = join(argv.cachefolder, 'repo-lister')
-    const nodeModulesPath = join(process.cwd(), 'node_modules')
-    const repoListerFolder = resolve(join(__dirname, '..'))
+  .then(() => log.debug('Preparing cache...'))
+  .then(() => steps.prepareCache(argv))
+  .then(() => log.debug('Cache prepared'))
 
-    if (repoListerFolder !== process.cwd()) {
-      return Promise.all([
-        copy(repoListerFolder, buildFolder),
-        ensureSymlink(nodeModulesPath, join(buildFolder, 'node_modules')),
-      ])
-        .then(() => process.chdir(buildFolder))
-    }
-  })
-  .then(() => {
-    const nextFolder = relative(process.cwd(), join(argv.cachefolder, '.next'))
-    return wrappedExec('next build', {DIST_DIR: nextFolder})
-      .then(() => remove(argv.outfolder))
-      .then(() => {
-        const promises = [
-          wrappedExec(`next export -o ${argv.outfolder}`, {DIST_DIR: nextFolder})
-        ]
-        if (!argv.production)
-          promises.push(wrappedExec(`build-storybook -o ${argv.outfolder}/storybook`))
-        return Promise.all(promises)
-      })
-  })
-  .then(() => {console.log('Done')})
-  .catch(err => {
-    console.trace(err)
-    process.exit(1)
-  })
+  .then(() => log.info('Building...'))
+  .then(() => steps.build(argv))
+  .then(() => log.debug('Project built'))
+
+  .then(() => log.info('Final processing...'))
+  .then(() => steps.copyAssets(argv))
+  .then(() => log.debug('Assets copied'))
+
+  .then(() => {log.info('Done')})
+  .catch(onError)

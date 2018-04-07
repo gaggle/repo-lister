@@ -11,7 +11,7 @@
     "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
     "test": "npm run test:jest && npm run test:export && npm run test:external && npm run test:deps",
     "test:deps": "echo travis_fold:start:deps && depcheck --ignores $(cat depcheck_ignores.txt | xargs | sed -e 's/ /,/g') && echo travis_fold:end:deps",
-    "test:export": "echo travis_fold:start:export && node bin/cli.js -d=tests/fixtures/sample-data/data.json -s=tests/fixtures/sample-data/ -o=tmp/out/ -c=tmp/webcache && echo travis_fold:end:export",
+    "test:export": "echo travis_fold:start:export && node bin/cli.js http://localhost:6000 -s=tests/fixtures/sample-data/ -o=tmp/export_out/ -vvv && echo travis_fold:end:export",
     "test:external": "echo travis_fold:start:external && ./scripts/test-external-usage && echo travis_fold:end:external",
     "test:jest": "echo travis_fold:start:jest && jest --no-cache --silent && echo travis_fold:end:jest",
     "test:scrape": "echo travis_fold:start:scrape && repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/scrapecache/ && echo travis_fold:end:scrape",
@@ -61,6 +61,7 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
+    "tmp-promise": "^1.0.4",
     "url-join": "^4.0.0",
     "yargs": "^11.0.0"
   },
