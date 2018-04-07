@@ -19,7 +19,7 @@ fi
 
 npm install ${FILENAME} --save
 
-mkdir out # CLI would crash if folder already existed and had files, so, we explicitly test for that here
+mkdir out # CLI would crash if folder already existed and had files, so, we explicitly test for that case here
 touch out/index.html
 
 echo ${PWD}
