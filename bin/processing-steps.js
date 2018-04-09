@@ -18,8 +18,8 @@ exports.build = async argv => {
   await fs.remove(argv.outfolder)
 
   const promises = [wrappedExec(`next export -o ${argv.outfolder}`, {DIST_DIR: buildFolder})]
-  // if (!argv.production)
-  //   promises.push(wrappedExec(`build-storybook -o ${argv.outfolder}/storybook`))
+  if (!argv.production)
+    promises.push(wrappedExec(`build-storybook -o ${argv.outfolder}/storybook`))
   return Promise.all(promises)
 }
 
