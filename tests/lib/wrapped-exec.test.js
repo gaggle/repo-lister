@@ -25,4 +25,10 @@ describe('exec', () => {
     const result = await exec('>&2 echo "error"')
     expect(result.stdout).toEqual('')
   })
+
+  it('should reject if exec itself fails', async () => {
+    await expect(exec('$'))
+      .rejects
+      .toBeInstanceOf(Error)
+  })
 })
