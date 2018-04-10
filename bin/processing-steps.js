@@ -12,12 +12,16 @@ exports.build = async argv => {
   await wrappedExec('next build', {
     DATA_URL: new URL('/repos/data.json', argv.base),
     DIST_DIR: buildFolder,
+    SCRAPE_DIR: argv.scrapedfolder,
   })
 
   log.debug(`Removing '${argv.outfolder}'`)
   await fs.remove(argv.outfolder)
 
-  const promises = [wrappedExec(`next export -o ${argv.outfolder}`, {DIST_DIR: buildFolder})]
+  const promises = [wrappedExec(`next export -o ${argv.outfolder}`, {
+    DIST_DIR: buildFolder,
+    SCRAPE_DIR: argv.scrapedfolder,
+  })]
   if (!argv.production)
     promises.push(wrappedExec(`build-storybook -o ${argv.outfolder}/storybook`))
   return Promise.all(promises)

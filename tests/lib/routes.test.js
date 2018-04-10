@@ -1,28 +1,40 @@
-import getFakeData from '../../lib/fake-data'
-import routes from '../../lib/routes'
+import { join } from 'path'
+
+import getRoutes from '../../lib/routes'
+
+import rawScrapeData from '../fixtures/sample-data/data.json'
+
+const arrContaining = expect.arrayContaining
+const objContaining = expect.objectContaining
 
 describe('routes', () => {
+  const oldEnv = process.env
+
+  beforeEach(() => {
+    process.env = {...oldEnv}
+    process.env.SCRAPE_DIR = join(__dirname, '../fixtures/sample-data')
+  })
+
+  afterEach(() => process.env = oldEnv)
+
   it('specifies root page', () => {
-    expect(routes(getFakeData())).toEqual(expect.objectContaining({
+    expect(getRoutes()).toEqual(objContaining({
       '/': {page: '/'}
     }))
   })
 
   it('puts data-elements into expected page', () => {
-    expect(routes(getFakeData())).toEqual(expect.objectContaining({
-      '/repos/id': {
-        page: '/repo', query: {
-          id: 'id',
-        }
-      }
-    }))
-  })
-})
+    const el = rawScrapeData.repos[Object.keys(rawScrapeData.repos)[0]]
+    const idealRoute = `/repos/${el.id}`
 
-describe('routes with real data', () => {
-  it('specifies root page', () => {
-    const result = routes()
-    expect(result)
-      .toEqual(expect.objectContaining({'/': {'page': '/'}}))
+    const routes = getRoutes()
+
+    expect(Object.keys(routes)).toEqual(arrContaining([idealRoute]))
+    expect(routes[idealRoute]).toEqual({
+      page: '/repo',
+      query: {
+        id: el.id,
+      }
+    })
   })
 })

@@ -3,18 +3,17 @@ import expect from 'expect'
 import fetchMock from 'fetch-mock'
 import thunk from 'redux-thunk'
 
-import getFakeData from '../../lib/fake-data'
 import { actionTypes, initialState } from '../../store'
 import { startDataPoll } from '../../store/actions'
+
+import scrapeData from '../fixtures/sample-data/data'
 
 const getMockStore = configureMockStore([thunk])
 
 describe('startDataPoll', () => {
   let store
 
-  beforeEach(() => {
-    store = getMockStore(initialState)
-  })
+  beforeEach(() => store = getMockStore(initialState))
 
   afterEach(() => {
     fetchMock.reset()
@@ -22,7 +21,7 @@ describe('startDataPoll', () => {
   })
 
   it('dispatches type of events in specified order', async () => {
-    fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+    fetchMock.get(initialState.dataUrl, {body: scrapeData})
 
     await store.dispatch(startDataPoll())
     const actions = store.getActions()
@@ -36,17 +35,17 @@ describe('startDataPoll', () => {
 
   describe('dispatches FETCHED event', () => {
     it('containing data entry with content from url', async () => {
-      fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+      fetchMock.get(initialState.dataUrl, {body: scrapeData})
 
       await store.dispatch(startDataPoll())
       const action = getAction(store, actionTypes.FETCHED)
 
-      expect(action).toMatchObject({data: getFakeData()})
+      expect(action).toMatchObject({data: scrapeData})
       expect(fetchMock.calls().length).toEqual(1)
     })
 
     it('containing response entry', async () => {
-      fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+      fetchMock.get(initialState.dataUrl, {body: scrapeData})
 
       await store.dispatch(startDataPoll())
       const action = getAction(store, actionTypes.FETCHED)
@@ -66,7 +65,7 @@ describe('startDataPoll', () => {
 
   describe('(fetching behavior)', () => {
     it('fetches data immediately', async () => {
-      fetchMock.get(initialState.dataUrl, {body: getFakeData()})
+      fetchMock.get(initialState.dataUrl, {body: scrapeData})
       await store.dispatch(startDataPoll())
       expect(fetchMock.calls().length).toEqual(1)
     })

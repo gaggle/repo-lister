@@ -3,7 +3,7 @@ const express = require('express')
 const next = require('next')
 const {parse} = require('url')
 
-const getRoutes = require('../lib/routes')()
+const getRoutes = require('../lib/routes')
 
 const ISDEV = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
@@ -13,6 +13,7 @@ const handle = app.getRequestHandler()
 
 app.prepare()
   .then(() => {
+    const routes = getRoutes()
     const server = express()
 
     server.use('/fonts', express.static('./node_modules/ionicons/dist/fonts'))
@@ -21,7 +22,7 @@ app.prepare()
     server.get('*', (req, res) => {
       const parsedUrl = parse(req.url, true)
       const {pathname} = parsedUrl
-      const route = getRoutes[pathname]
+      const route = routes[pathname]
       if (route) {
         return app.render(req, res, route.page, route.query)
       }
