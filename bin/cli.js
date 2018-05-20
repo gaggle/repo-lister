@@ -54,7 +54,7 @@ const argv = require('yargs')
   .argv
 
 const onError = err => {
-  log.trace(err)
+  log.error(err)
   process.exit(1)
 }
 
