@@ -46,7 +46,7 @@ const argv = require('yargs')
     yargs.option('c', {
       alias: 'cachefolder',
       default: defaultOptions.cachefolder,
-      describe: 'Debug flag to set caching folder, defaults to temp. dir',
+      describe: 'Debug flag to set caching folder',
       type: 'string',
     })
   })
