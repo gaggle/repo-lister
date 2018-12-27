@@ -1,46 +1,34 @@
 import React, { Component } from 'react'
-import withRedux from 'next-redux-wrapper'
-import { bindActionCreators } from 'redux'
-import { Container } from 'reactstrap'
+import { connect } from 'react-redux'
+import { Container } from 'next/app'
+import { page, repocards, renderprops } from 'repo-components'
 
-import Layout from '../components/layout'
-import RepoCards from '../components/repo-cards'
-import { initStore } from '../store/index'
-import { renderIfElse } from '../lib/render-if'
-import { guardedStartDataPoll } from '../store/actions'
-
-export class IndexPage extends Component {
-
-  static getInitialProps ({isServer}) {
-    return {isServer}
-  }
-
-  componentDidMount () {
-    this.props.startDataPoll(this.props.isServer)
-  }
-
-  render () {
-    return (
-      <Layout>
-        <Container fluid={true}>
-          <h2 className="text-center display-4 mt-5 mb-2">List of repos</h2>
-          {renderIfElse(this.props.hasInitialized,
-            () => <RepoCards/>,
-            () => <div>Loading...</div>,
-          )}
-        </Container>
-      </Layout>
-    )
-  }
-}
-
-const mapStateToProps = ({initialized, requestHistory}) => ({
-  hasInitialized: initialized,
+const mapStateToProps = ({data, hasFetchedOnce, requestHistory}) => ({
+  hasInitialized: hasFetchedOnce,
+  repos: data.repos,
   requestHistory,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  startDataPoll: bindActionCreators(guardedStartDataPoll, dispatch)
-})
+const LoadingRepocards = ({repos, hasInitialized}) => <renderprops.RenderIfElse
+  test={hasInitialized}
+  pass={() =>
+    <page.Masonry>
+      {Object.entries(repos).map(([key, value], index) =>
+        <repocards.RepoCard key={key} data-index={index} {...value}/>
+      )}
+    </page.Masonry>}
+  fail={() => <page.Loading/>}
+>
+</renderprops.RenderIfElse>
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(IndexPage)
+const LoadingRepocardsWithStore = connect(mapStateToProps)(LoadingRepocards)
+
+export class IndexPage extends Component {
+  render () {
+    return <Container>
+      <LoadingRepocardsWithStore/>
+    </Container>
+  }
+}
+
+export default connect(mapStateToProps)(IndexPage)

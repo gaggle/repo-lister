@@ -1,52 +1,57 @@
 import lo from 'lodash'
 
 import { actionTypes, initialState } from '../../store'
-import { reducer } from '../../store/reducers'
+import { reducer, ResponseEntry } from '../../store/reducers'
+import { getResponse } from './helpers'
 
 describe('reducer', () => {
   describe('FETCHING', () => {
-    it('sets fetching', () => {
+    it('enables fetching', () => {
       const state = reducer(initialState, {type: actionTypes.FETCHING})
       expect(state).toMatchObject({fetching: true})
     })
   })
 
   describe('FETCHED', () => {
-    it('unsets fetching', () => {
+    it('disables fetching', () => {
       const state = reducer(initialState, {type: actionTypes.FETCHED})
       expect(state).toMatchObject({'fetching': false})
     })
 
-    it('sets initialised', () => {
+    it('enables hasFetchedOnce', () => {
       const state = reducer(initialState, {type: actionTypes.FETCHED})
-      expect(state).toMatchObject({'initialized': true})
+      expect(state).toMatchObject({'hasFetchedOnce': true})
     })
 
-    it('appends to request history', () => {
-      const state = reducer(initialState, {type: actionTypes.FETCHED})
-      expect(state).toMatchObject({'requestHistory': [{}]})
-    })
-
-    it('appends to request history', () => {
+    it('appends ResponseEntry to request history', () => {
       const state = reducer(initialState, {
-        type: actionTypes.FETCHED, response: {status: 'status', statusText: 'text'}
+        type: actionTypes.FETCHED,
+        response: getResponse()
+      })
+      expect(state).toMatchObject({'requestHistory': [expect.any(ResponseEntry)]})
+    })
+
+    it('stores response details in request history', () => {
+      const state = reducer(initialState, {
+        type: actionTypes.FETCHED,
+        response: getResponse({status: 1, statusText: 'Foo'})
       })
       expect(state.requestHistory[0]).toMatchObject({
         createdAt: expect.any(Date),
-        status: 'status',
-        statusText: 'text',
+        status: 1,
+        statusText: 'Foo',
       })
     })
 
     it('limits request history length', () => {
       let state = initialState
-      for (let i in lo.range(1000)) {
+      for (let i in lo.range(100)) {
         state = reducer(state, {type: actionTypes.FETCHED, response: {statusText: i}})
       }
       expect(state.requestHistory.length).toEqual(50)
     })
 
-    it('sets data', () => {
+    it('stores action data', () => {
       const state = reducer(initialState, {type: actionTypes.FETCHED, data: {foo: 'bar'}})
       expect(state).toMatchObject({data: {foo: 'bar'}})
     })

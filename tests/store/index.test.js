@@ -1,26 +1,26 @@
 import * as redux from 'redux'
 
-import { initialState, initStore } from '../../store'
+import { initialState, makeStore } from '../../store'
 import { reducer } from '../../store/reducers'
 
 describe('initStore', () => {
   beforeEach(() => {
-    // noinspection JSAnnotator
+    // noinspection JSUnresolvedVariable
     redux.createStore = jest.fn()
     jest.setMock('redux', redux)
   })
 
   it('takes an initial state', () => {
-    initStore({})
+    makeStore({foo: 'bar'})
     expect(redux.createStore).toHaveBeenCalledWith(
       reducer,
-      {},
+      {foo: 'bar'},
       expect.anything()
     )
   })
 
   it('uses initial state by default', () => {
-    initStore()
+    makeStore()
     expect(redux.createStore).toHaveBeenCalledWith(
       reducer,
       initialState,

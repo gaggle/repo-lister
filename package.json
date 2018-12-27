@@ -1,132 +1,71 @@
 {
   "name": "repo-lister",
   "version": "0.0.0",
-  "description": "",
   "bin": {
-    "repo-web": "bin/cli.js"
+    "repo-web": "scripts/cli.js"
   },
   "scripts": {
-    "clean": "rm -rf coverage/ node_modules/.cache/ tmp/",
-    "start": "next build && ./scripts/serve",
-    "start:stories": "start-storybook -p 6006 -s ./node_modules/ionicons/dist",
-    "test": "npm run test:jest && npm run test:export && npm run test:external && npm run test:deps",
-    "test:deps": "echo travis_fold:start:deps && depcheck --ignores $(cat depcheck_ignores.txt | xargs | sed -e 's/ /,/g') && echo travis_fold:end:deps",
-    "test:export": "echo travis_fold:start:export && node bin/cli.js http://localhost:6000 -s=tests/fixtures/sample-data/ -o=tmp/export_out/ -v && echo travis_fold:end:export",
-    "test:external": "echo travis_fold:start:external && ./scripts/test-external-usage && echo travis_fold:end:external",
-    "test:fixtures:scrape": "echo travis_fold:start:scrape && repo-scrape github -o=tests/fixtures/sample-data/data.json -f=tests/fixtures/sample-data/ -c=tmp/scrapecache/ && echo travis_fold:end:scrape",
-    "test:jest": "echo travis_fold:start:jest && jest --no-cache --silent && echo travis_fold:end:jest",
-    "test:update": "jest -u --no-cache --silent"
+    "clean": "rm -rf .next coverage/ node_modules/.cache/ tmp/ out/",
+    "dev": "next",
+    "dev:export": "export DATA_URL=http://localhost:8080/static/repos/data.json && next build && next export -o=tmp/export_out/ && (cd tmp/export_out && serve -p 8080)",
+    "dev:scrape-fixtures": "repo-scrape github -o=tests/fixtures/sample-data/ -c=tmp/scrapecache/",
+    "test": "concurrently --kill-others-on-fail \"npm:test:*\"",
+    "test:deps": "depcheck --ignores $(cat depcheck_ignores.txt | xargs | sed -e 's/ /,/g')",
+    "test:jest": "jest --no-cache --silent --coverage",
+    "test:export": "next build && next export -o=tmp/test_export_out/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gaggle/repo-lister.git"
-  },
-  "author": "Jon Lauridsen <mail@jonlauridsen.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gaggle/repo-lister/issues"
-  },
-  "homepage": "https://github.com/gaggle/repo-lister#readme",
   "dependencies": {
-    "@storybook/addon-actions": "^3.3.6",
-    "@storybook/addon-links": "^3.3.6",
-    "@storybook/react": "^3.3.6",
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-define": "^1.3.0",
-    "bootstrap": "^4.0.0",
-    "child-process-promise": "^2.2.1",
-    "css-loader": "^0.28.9",
-    "date-fns": "^1.29.0",
-    "fs-extra": "^5.0.0",
-    "github-colors": "^2.2.17",
-    "html-react-parser": "^0.4.2",
-    "ionicons": "^3.0.0",
-    "isomorphic-unfetch": "^2.0.0",
-    "jquery": "^3.3.1",
-    "json-stable-stringify": "^1.0.1",
-    "lodash": "^4.17.5",
-    "loglevel": "^1.6.1",
-    "next": "^4.2.3",
-    "next-redux-wrapper": "^1.3.5",
-    "node-sass": "^4.7.2",
-    "prop-types": "^15.6.0",
-    "raw-loader": "^0.5.1",
-    "react": "^16.2.0",
-    "react-bootstrap-table": "^4.3.1",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-storybook-addon-chapters": "^2.1.3",
-    "reactstrap": "^5.0.0-alpha.4",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.2",
-    "tmp-promise": "^1.0.4",
-    "url-join": "^4.0.0",
-    "yargs": "^11.0.0"
+    "@zeit/next-sass": "^1.0.1",
+    "bulma": "^0.7.2",
+    "next": "^7.0.2",
+    "next-redux-wrapper": "^2.0.0",
+    "node-sass": "^4.9.4",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "repo-components": "git+https://github.com/gaggle/repo-components"
   },
   "devDependencies": {
-    "depcheck": "^0.6.9",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "express": "^4.16.2",
-    "fetch-mock": "^6.3.0",
-    "jest": "^22.0.5",
-    "mockdate": "^2.0.2",
-    "react-test-renderer": "^16.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-class-properties": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@babel/runtime": "^7.1.5",
+    "concurrently": "^4.1.0",
+    "depcheck": "^0.6.11",
+    "fetch-mock": "^7.1.0",
+    "jest": "^23.6.0",
+    "lodash": "^4.17.11",
     "redux-mock-store": "^1.5.1",
-    "repo-scraper": "git+https://github.com/gaggle/repo-scraper.git"
+    "serve": "^10.1.1"
   },
   "babel": {
     "plugins": [
-      [
-        "transform-define",
-        "./lib/env-config.js"
-      ]
+      "styled-jsx/babel",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-syntax-class-properties",
+      "@babel/plugin-transform-modules-commonjs",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-export-default-from"
     ],
-    "env": {
-      "development": {
-        "presets": "next/babel"
-      },
-      "production": {
-        "presets": "next/babel"
-      },
-      "test": {
-        "presets": [
-          [
-            "env",
-            {
-              "modules": "commonjs"
-            }
-          ],
-          "next/babel"
-        ]
-      }
-    }
+    "presets": [
+      "@babel/preset-react"
+    ]
   },
   "jest": {
-    "collectCoverage": true,
-    "coverageReporters": [
-      "html",
-      "text-summary"
-    ],
     "collectCoverageFrom": [
-      "**/*.js",
-      "!*.js"
+      "lib/**/*",
+      "scripts/**/*",
+      "store/**/*"
     ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/coverage/",
-      "<rootDir>/node_modules/",
-      "<rootDir>/tmp/",
-      "<rootDir>/stories/"
-    ],
-    "setupFiles": [
-      "<rootDir>/tests/__mocks__/shim.js",
-      "<rootDir>/tests/__mocks__/setupTests.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/tests/__mocks__/styleMock.js"
-    },
-    "testRegex": ".(test|spec)\\.jsx?$"
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ]
   }
 }
