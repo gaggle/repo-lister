@@ -2,7 +2,7 @@ import { join } from 'path'
 
 import getRoutes from '../../lib/routes'
 
-import rawScrapeData from '../fixtures/sample-data/data.json'
+import sampleData from '../fixtures/sample-data/data.json'
 
 const arrContaining = expect.arrayContaining
 const objContaining = expect.objectContaining
@@ -17,21 +17,15 @@ describe('routes', () => {
 
   afterEach(() => process.env = oldEnv)
 
-  it('specifies root page', () => {
-    expect(getRoutes()).toEqual(objContaining({
-      '/': {page: '/'}
-    }))
-  })
-
   it('puts data-elements into expected page', () => {
-    const el = rawScrapeData.repos[Object.keys(rawScrapeData.repos)[0]]
+    const el = sampleData.repos[Object.keys(sampleData.repos)[0]]
     const idealRoute = `/repos/${el.id}`
 
     const routes = getRoutes()
 
     expect(Object.keys(routes)).toEqual(arrContaining([idealRoute]))
     expect(routes[idealRoute]).toEqual({
-      page: '/repo',
+      page: '/repos',
       query: {
         id: el.id,
       }
