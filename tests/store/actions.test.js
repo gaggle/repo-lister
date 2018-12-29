@@ -1,16 +1,16 @@
 import configureMockStore from 'redux-mock-store'
-import expect from 'expect'
 import fetchMock from 'fetch-mock'
 import thunk from 'redux-thunk'
 
 import { actionTypes, initialState } from '../../store'
-import { startDataPoll } from '../../store/actions'
+import { dataPoll } from '../../store/actions'
 
-import scrapeData from '../fixtures/sample-data/data'
+import sampleData from '../fixtures/sample-data/data'
+import { getResponse } from './helpers'
 
 const getMockStore = configureMockStore([thunk])
 
-describe('startDataPoll', () => {
+describe('dataPoll', () => {
   let store
 
   beforeEach(() => store = getMockStore(initialState))
@@ -21,9 +21,9 @@ describe('startDataPoll', () => {
   })
 
   it('dispatches type of events in specified order', async () => {
-    fetchMock.get(initialState.dataUrl, {body: scrapeData})
+    fetchMock.get(initialState.dataUrl, {body: sampleData})
 
-    await store.dispatch(startDataPoll())
+    await store.dispatch(dataPoll())
     const actions = store.getActions()
 
     expect(actions)
@@ -33,51 +33,39 @@ describe('startDataPoll', () => {
       ])
   })
 
-  describe('dispatches FETCHED event', () => {
-    it('containing data entry with content from url', async () => {
-      fetchMock.get(initialState.dataUrl, {body: scrapeData})
+  describe('FETCHED event', () => {
+    it('has data key with body of store url', async () => {
+      fetchMock.get(initialState.dataUrl, {body: {foo: 'bar'}})
 
-      await store.dispatch(startDataPoll())
-      const action = getAction(store, actionTypes.FETCHED)
+      await store.dispatch(dataPoll())
+      const action = store.getActions()[1]
 
-      expect(action).toMatchObject({data: scrapeData})
+      expect(action).toMatchObject({data: {foo: 'bar'}})
       expect(fetchMock.calls().length).toEqual(1)
     })
 
-    it('containing response entry', async () => {
-      fetchMock.get(initialState.dataUrl, {body: scrapeData})
+    it('has response key with fetch response', async () => {
+      fetchMock.get(initialState.dataUrl, {body: {foo: 'bar'}})
 
-      await store.dispatch(startDataPoll())
-      const action = getAction(store, actionTypes.FETCHED)
+      await store.dispatch(dataPoll())
+      const action = store.getActions()[1]
 
-      expect(action).toMatchObject({response: {}})
+      expect(action).toMatchObject({response: getResponse()})
     })
 
-    it('containing no data in case of request-error', async () => {
+    it('has response key but no data if request failed', async () => {
       fetchMock.get(initialState.dataUrl, {status: 500})
 
-      await store.dispatch(startDataPoll())
-      const action = getAction(store, actionTypes.FETCHED)
+      await store.dispatch(dataPoll())
+      const action = store.getActions()[1]
 
+      expect(action).toMatchObject({
+        response: getResponse({
+          status: 500,
+          statusText: 'Internal Server Error',
+        })
+      })
       expect(action).not.toHaveProperty('data')
     })
   })
-
-  describe('(fetching behavior)', () => {
-    it('fetches data immediately', async () => {
-      fetchMock.get(initialState.dataUrl, {body: scrapeData})
-      await store.dispatch(startDataPoll())
-      expect(fetchMock.calls().length).toEqual(1)
-    })
-  })
 })
-
-function getAction (store, entry) {
-  const actions = store.getActions()
-  switch (entry) {
-    case actionTypes.FETCHING:
-      return actions[0]
-    case actionTypes.FETCHED:
-      return actions[1]
-  }
-}

@@ -1,22 +1,26 @@
 import { actionTypes } from './index'
 
 export const reducer = (state, action) => {
+  function addRequestHistory (res) {
+    let newRequestHistory = state.requestHistory.concat([
+      new ResponseEntry(res || {})
+    ])
+    if (newRequestHistory.length > 50) {
+      newRequestHistory = newRequestHistory
+        .slice(1, newRequestHistory.length)
+    }
+    return newRequestHistory
+  }
+
   switch (action.type) {
     case actionTypes.FETCHING:
       return Object.assign({}, state, {fetching: true})
 
     case actionTypes.FETCHED:
-      let newRequestHistory = state.requestHistory.concat(
-        [new ResponseEntry(action.response || {})]
-      )
-      if (newRequestHistory.length > 50) {
-        newRequestHistory = newRequestHistory
-          .slice(1, newRequestHistory.length)
-      }
       const newState = {
         fetching: false,
-        initialized: true,
-        requestHistory: newRequestHistory,
+        hasFetchedOnce: true,
+        requestHistory: addRequestHistory(action.response),
       }
       if (action.data) newState.data = action.data
       return Object.assign({}, state, newState)
@@ -26,7 +30,7 @@ export const reducer = (state, action) => {
   }
 }
 
-class ResponseEntry {
+export class ResponseEntry {
   constructor (res) {
     this.createdAt = new Date()
     this.status = res.status
