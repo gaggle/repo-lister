@@ -1,0 +1,41 @@
+#!/bin/bash -eu
+
+# Store where we're called from
+ORIG_CWD=$PWD
+
+# Calculate TMP, if it isn't provided create a temp. folder
+TMP=${TMP:-}
+if [[ -z "$TMP" ]]; then CREATED_TMP=1; else CREATED_TMP=0; fi
+TMP=${TMP:-`mktemp -d`}
+
+echo "Installing '${ORIG_CWD}' into '${TMP}' (created temp=${CREATED_TMP})"
+
+# Clean up files from previous runs (if user provided their own TMP)
+rm -rf ${TMP}/*
+
+# Package up repo so we can install it later
+tar -c --exclude-from=.gitignore -zf ${TMP}/package.tar.gz .
+
+# Switch to TMP, from now on files can be created in current dir without polluting ORIG_CWD
+cd ${TMP} # ! NEVER COMMENT THIS OUT !
+
+# Our local equivalent of git cloning
+tar -xzf package.tar.gz && rm package.tar.gz
+
+npm ci
+
+export DATA_URL=http://example/static/repos/data.json; next build && next export
+
+# Ensure output is as expected
+echo "List out: `ls -a ./out | xargs`"
+echo "List repos: `ls -a ./out/static/repos | xargs`"
+grep -q "http://example/static/repos/data.json" ./out/index.html && (echo "GOOD: index.html") || (echo "FAIL: index.html"; exit 1)
+
+npm install https://github.com/gaggle/repo-scraper.git --save
+npx repo-scrape --help
+
+# Clean up temp folder if it was created
+if [[ ${CREATED_TMP} = 1 ]]; then
+    echo "Cleaning up '${TMP}'"
+    rm -rf ${TMP}
+fi
