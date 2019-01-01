@@ -4,6 +4,20 @@ Generate a static site showing an overview of your repositories. Well, actually 
 Relies on [repo-components][components] ([Styleguide][styleguide]), and is consumed by [repos.jonlauridsen.com][repos.jonlauridsen.com].
 
 
+## Development
+* `npm run dev` to run a local server
+
+It is also possible to edit components and see changes reflected live in this repository. Ideally it wouldn't be necessary because of [repo-components][components] isolated nature, but in practice I've not managed to nail that workflow because e.g. only this repository has the necessary styling to fully render a component.
+
+To enable live-editing of components edit `package.json` dependency to point to your local `repo-components` folder, e.g.:
+```json
+    "repo-components": "file:../repo-components"
+```
+(remember to re-run `npm i`)
+
+Now you can run `npm run dev` in both folders and changes in `repo-components` gets reflected live.
+
+
 ## Cutting a new release
 Run this command to automatically increment version and push a new release:
 ```bash
