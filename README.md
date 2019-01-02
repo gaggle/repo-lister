@@ -3,6 +3,8 @@ Generate a static site showing an overview of your repositories. Well, actually 
 
 Relies on [repo-components][components] ([Styleguide][styleguide]), and is consumed by [repos.jonlauridsen.com][repos.jonlauridsen.com].
 
+Introduced and described on this blog: **[dev.to: repo-lister, a simple way to get an overview of repositories][dev.to]**
+
 
 ## Development
 * `npm run dev` to run a local server
@@ -26,6 +28,7 @@ npm run clean && npm test && npm version patch && (export VERSION=`node -p "requ
 
 
 [components]: https://github.com/gaggle/repo-components
+[dev.to]: https://dev.to/jonlauridsen/repo-lister-a-simple-way-to-get-an-overview-of-repositories-90l
 [styleguide]: https://gaggle.github.io/repo-components/
 [repo-scraper]: https://github.com/gaggle/repo-scraper
 [repos.jonlauridsen.com]: https://github.com/gaggle/repos.jonlauridsen.com
