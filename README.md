@@ -29,6 +29,6 @@ npm run clean && npm test && npm version patch && (export VERSION=`node -p "requ
 
 [components]: https://github.com/gaggle/repo-components
 [dev.to]: https://dev.to/jonlauridsen/repo-lister-a-simple-way-to-get-an-overview-of-repositories-90l
-[styleguide]: https://gaggle.github.io/repo-components/
 [repo-scraper]: https://github.com/gaggle/repo-scraper
 [repos.jonlauridsen.com]: https://github.com/gaggle/repos.jonlauridsen.com
+[styleguide]: https://gaggle.github.io/repo-components/
