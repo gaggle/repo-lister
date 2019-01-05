@@ -14,7 +14,7 @@ const LoadingRepocards = ({ repos, hasInitialized }) => <renderprops.RenderIfEls
   pass={() =>
     <page.Masonry>
       {Object.entries(repos).map(([key, value], index) =>
-        <repocards.RepoCard key={key} data-index={index} {...value} />
+        <repocards.RepoCard key={key} data-index={index} {...value} externalLink={value.repoHtmlUrl} />
       )}
     </page.Masonry>}
   fail={() => <page.Loading />}
