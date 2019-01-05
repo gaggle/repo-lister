@@ -5,7 +5,7 @@ import { reducer } from './reducers'
 
 export const actionTypes = {
   FETCHED: 'FETCHED',
-  FETCHING: 'FETCHING',
+  FETCHING: 'FETCHING'
 }
 
 export const makeStore = (state = initialState) => {
@@ -13,10 +13,10 @@ export const makeStore = (state = initialState) => {
 }
 
 export const initialState = {
-  data: {repos: {}},
+  data: { repos: {} },
   dataUrl: process.env.DATA_URL || 'http://localhost:3000/static/repos/data.json',
   fetching: undefined,
   hasFetchedOnce: false,
   lastUpdate: 0,
-  requestHistory: [],
+  requestHistory: []
 }

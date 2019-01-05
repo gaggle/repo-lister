@@ -12,10 +12,10 @@ describe('initStore', () => {
   })
 
   it('takes an initial state', () => {
-    makeStore({foo: 'bar'})
+    makeStore({ foo: 'bar' })
     expect(redux.createStore).toHaveBeenCalledWith(
       reducer,
-      {foo: 'bar'},
+      { foo: 'bar' },
       expect.anything()
     )
   })
