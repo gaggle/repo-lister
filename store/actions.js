@@ -10,8 +10,6 @@ export const dataPoll = () => async (dispatch, getState) => {
   return fetchDataJson(dispatch, state.dataUrl)
 }
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
 const fetchDataJson = async (dispatch, url) => {
   dispatch({type: actionTypes.FETCHING})
   const res = await fetch(url)
