@@ -1,3 +1,5 @@
 @babel/runtime
+babel-eslint
 bulma
 jest
+standard
