@@ -14,7 +14,7 @@ const getMockStore = configureMockStore([thunk])
 describe('dataPoll', () => {
   let store
 
-  beforeEach(() => store = getMockStore(initialState))
+  beforeEach(() => { store = getMockStore(initialState)})
 
   afterEach(() => {
     fetchMock.reset()
