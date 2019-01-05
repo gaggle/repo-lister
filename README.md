@@ -1,4 +1,5 @@
-# repo-lister [![Build Status](https://travis-ci.org/gaggle/repo-lister.svg?branch=master)](https://travis-ci.org/gaggle/repo-lister)
+# repo-lister [![Build Status](https://travis-ci.org/gaggle/repo-lister.svg?branch=master)](https://travis-ci.org/gaggle/repo-lister) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Generate a static site showing an overview of your repositories. Well, actually [repo-scraper][repo-scraper] generates the data of your repositories, but repo-lister generates the site that **shows** that data.
 
 Relies on [repo-components][components] ([Styleguide][styleguide]), and is consumed by [repos.jonlauridsen.com][repos.jonlauridsen.com].

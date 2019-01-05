@@ -14,13 +14,13 @@ export const reducer = (state, action) => {
 
   switch (action.type) {
     case actionTypes.FETCHING:
-      return Object.assign({}, state, {fetching: true})
+      return Object.assign({}, state, { fetching: true })
 
     case actionTypes.FETCHED:
       const newState = {
         fetching: false,
         hasFetchedOnce: true,
-        requestHistory: addRequestHistory(action.response),
+        requestHistory: addRequestHistory(action.response)
       }
       if (action.data) newState.data = action.data
       return Object.assign({}, state, newState)

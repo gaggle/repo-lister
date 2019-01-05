@@ -10,21 +10,21 @@ import { dataPoll } from '../store/actions'
 
 import '../lib/styles.sass'
 
-const mapStateToProps = ({data, hasFetchedOnce, requestHistory}) => ({
+const mapStateToProps = ({ data, hasFetchedOnce, requestHistory }) => ({
   hasInitialized: hasFetchedOnce,
   repos: data.repos,
   requestHistory,
-  createdAt: data.createdAt,
+  createdAt: data.createdAt
 })
 
-const BuildDateLayout = ({createdAt, children}) => <page.Layout buildDate={createdAt}>{children}</page.Layout>
+const BuildDateLayout = ({ createdAt, children }) => <page.Layout buildDate={createdAt}>{children}</page.Layout>
 
 const BuildDateLayoutWithStore = connect(mapStateToProps)(BuildDateLayout)
 
 class AppWithStore extends App {
-  static async getInitialProps ({Component, ctx}) {
+  static async getInitialProps ({ Component, ctx }) {
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
-    return {pageProps}
+    return { pageProps }
   }
 
   componentDidMount () {
@@ -33,7 +33,7 @@ class AppWithStore extends App {
   }
 
   render () {
-    const {Component, pageProps, store} = this.props
+    const { Component, pageProps, store } = this.props
     return (
       <Container>
         <Provider store={store}>

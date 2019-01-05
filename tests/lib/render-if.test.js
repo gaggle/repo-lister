@@ -1,3 +1,4 @@
+/* global describe it */
 import renderIf, { renderIfElse } from '../../lib/render-if'
 
 describe('renderIf', () => {
