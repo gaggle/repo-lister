@@ -2,6 +2,8 @@
 
 Generate a static site showing an overview of your repositories. Well, actually [repo-scraper][repo-scraper] generates the data of your repositories, but repo-lister generates the site that **shows** that data.
 
+![Image showing closeup of generated site](screenshot.jpg)
+
 Relies on [repo-components][components] ([Styleguide][styleguide]), and is consumed by [repos.jonlauridsen.com][repos.jonlauridsen.com].
 
 Introduced and described on this blog: **[dev.to: repo-lister, a simple way to get an overview of repositories][dev.to]**
