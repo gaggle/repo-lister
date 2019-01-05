@@ -1,3 +1,4 @@
+/* global describe expect it */
 const envConfig = require('../../lib/env-config')
 
 describe('env config', () => {

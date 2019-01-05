@@ -1,3 +1,4 @@
+/* global describe expect it */
 import { getDatetime } from '../../lib/dates'
 
 describe('getDatetime', () => {

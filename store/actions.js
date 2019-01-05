@@ -1,3 +1,4 @@
+/* global fetch */
 import { actionTypes } from './index'
 
 /**

@@ -1,4 +1,5 @@
-const {join, resolve} = require('path')
+/* global describe expect it */
+const { join, resolve } = require('path')
 
 const prettyPath = require('../../lib/pretty-path')
 

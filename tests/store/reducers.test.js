@@ -1,3 +1,4 @@
+/* global describe expect it */
 import lo from 'lodash'
 
 import { actionTypes, initialState } from '../../store'

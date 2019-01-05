@@ -1,3 +1,4 @@
+/* global beforeEach describe expect it jest */
 import * as redux from 'redux'
 
 import { initialState, makeStore } from '../../store'
