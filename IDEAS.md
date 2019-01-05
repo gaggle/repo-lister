@@ -1,8 +1,5 @@
 # Ideas for future features
 
-## Add standardjs
-
-
 ## Link to each of the repos, so its easy to go to a particular repository
 Maybe a mouse-over transition, like a slide-down drawer containing a link-arrow?
 
