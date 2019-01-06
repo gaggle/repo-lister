@@ -1,18 +1,15 @@
 @import '~bulma/sass/utilities/initial-variables'
 @import '~bulma/bulma'
 
+.is-pulled-right
+  justify-content: flex-end
+
 .repo-cards
   background-color: #d4d6d6
   padding: 1rem 0
 
   +tablet
     padding: 1rem 1.5rem
-
-  .card-header-title
-    padding: .3rem .5rem
-
-  .card-content
-    padding: .5rem
 
   .grid
     margin: 0 auto
@@ -24,3 +21,23 @@
 
   +tablet
     margin: .3rem
+
+  a
+    transition: all .1s ease-in-out
+    height: 22px
+    margin-right: 2rem
+
+    +tablet
+      margin-right: 0
+
+    &:hover
+      transform: scale(1.2)
+
+  .card-header-title
+    padding: .3rem .5rem
+
+  .card-content
+    padding: .5rem
+
+  .card-footer-item
+    padding: .3rem 0 0 0
